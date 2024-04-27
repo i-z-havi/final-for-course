@@ -3,6 +3,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import ROUTES from '../../routes/routesModel'
 import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ChecklistIcon from '@mui/icons-material/Checklist';
 
 export default function Footer() {
@@ -14,6 +15,7 @@ export default function Footer() {
         <BottomNavigation showLabels>
           <BottomNavigationAction label="Landing Page" icon={<ChecklistIcon/>} onClick={()=>navigate(ROUTES.ROOT)}/>
           <BottomNavigationAction label="Sandbox" icon={<TipsAndUpdatesIcon/>} onClick={() => navigate(ROUTES.SANDBOX)} />
+          <BottomNavigationAction label="New Petition" icon={<CheckCircleIcon/>} onClick={() => navigate(ROUTES.CREATE_POLICY)} />
         </BottomNavigation>
       </Paper>
     </Box>

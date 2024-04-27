@@ -1,0 +1,3 @@
+like literally everything lol
+
+-Models might be unneeded- all our models in c# are "flat" (no nested objects) (normalizing unneeded)
