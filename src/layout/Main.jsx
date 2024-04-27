@@ -11,7 +11,7 @@ export default function Main({ children }) {
   }
 
   return (
-    <Box style={bgStyle} sx={{minHeight:"85vh"}}>
+    <Box style={bgStyle} sx={{minHeight:"100vh"}} color={theme.palette.text.primary}>
       {children}
     </Box>
   )

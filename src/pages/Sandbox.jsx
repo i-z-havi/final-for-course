@@ -1,18 +1,16 @@
 import { Box, Button, Container, Typography } from '@mui/material'
 import React, { useContext } from 'react'
 import { ColorModeContext } from '../theme/MyThemeProvider'
-import { useTheme } from '@mui/material/styles'
 // import { useTheme } from '@emotion/react'
 //both useThemes seem interchangable?
 
 export default function Sandbox() {
 
-  const theme = useTheme()
   const colorMode = useContext(ColorModeContext) //should put this in header where dark mode toggle will be
 
   return (
     <>
-    <Box color={theme.palette.text.primary} >
+    <Box>
       <Typography align='center' component='h1' variant='h2'>
         Sandbox
       </Typography>
