@@ -4,7 +4,7 @@ import React from 'react'
 
 export default function FormTemplate({ children, title }) {
     return (
-        <Box component='form'>
+        <form>
             <Typography variant='h4' align='center' sx={{ pt: 3, mb:2 }}>
                 {title}
             </Typography>
@@ -24,6 +24,6 @@ export default function FormTemplate({ children, title }) {
                     </Button>
                 </Grid>
             </Box>
-        </Box >
+        </form>
     )
 }
