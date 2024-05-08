@@ -4,6 +4,7 @@ import initialPolicyForm from '../formhelper/initialPolicyForm';
 import { TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
+import {createPolicy} from '../hooks/usePolicyAPI';
 
 export default function CreatePolicyForm() {
 
@@ -17,7 +18,8 @@ export default function CreatePolicyForm() {
   }
 
   const onSubmit = (data) => {
-    console.log(data)
+    createPolicy(data);
+    console.log(data);
   }
 
   return (

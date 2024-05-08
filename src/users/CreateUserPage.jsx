@@ -4,6 +4,7 @@ import { TextField } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import initialUserForm from './formhelper/initialUserForm'
 import { DevTool } from '@hookform/devtools'
+import { createUser } from './hooks/useUserAPI'
 
 export default function CreateUserPage() {
 
@@ -17,6 +18,7 @@ export default function CreateUserPage() {
   }
 
   const onSubmit = (data) => {
+    createUser(data);
     console.log(data)
   }
 
