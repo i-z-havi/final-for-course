@@ -1,3 +1,6 @@
 like literally everything lol
 
+-make hook that is "inbetween" API and page for "business" logic (such as portraying snackbar etc.)
+
+
 -Models might be unneeded- all our models in c# are "flat" (no nested objects) (normalizing unneeded)

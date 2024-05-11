@@ -8,6 +8,6 @@ export const createUser = async (user) => {
         return data;
     }
     catch (error) {
-        return error.message;
+        return Promise.reject(error.message);
     }
-} 
+}

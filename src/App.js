@@ -3,15 +3,18 @@ import { BrowserRouter } from "react-router-dom";
 import Router from "./routes/Router";
 import Layout from "./layout/Layout.jsx";
 import MyThemeProvider from "./theme/MyThemeProvider.jsx";
+import SnackBarProvider from "./theme/Snackbar/SnackBarProvider.jsx";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <MyThemeProvider>
-          <Layout>
-            <Router />
-          </Layout>
+          <SnackBarProvider>
+            <Layout>
+              <Router />
+            </Layout>
+          </SnackBarProvider>
         </MyThemeProvider>
       </BrowserRouter>
     </>
