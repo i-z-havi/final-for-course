@@ -7,6 +7,7 @@ import ROUTES from '../../routes/routesModel';
 export default function useUserHook() {
     const snack = useSnack();
     const [data, setData] = useState([])
+    const [loading, setLoading]=useState(true)
     const navigate = useNavigate()
 
     const handleCreateUser = useCallback(async (user) => {
@@ -25,6 +26,7 @@ export default function useUserHook() {
             const users = await getUsers();
             setData(users);
             snack('success', 'Users successfully retrieved!');
+            setLoading(false)
         }
         catch (error) {
             snack('error', error);
@@ -33,6 +35,7 @@ export default function useUserHook() {
 
     return {
         data,
+        loading,
         handleCreateUser,
         handleGetUsers
     }
