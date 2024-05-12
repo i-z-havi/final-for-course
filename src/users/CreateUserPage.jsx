@@ -4,13 +4,13 @@ import { TextField } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import initialUserForm from './formhelper/initialUserForm'
 import { DevTool } from '@hookform/devtools'
-import { createUser } from './hooks/useUserAPI'
+import useUserHook from './hooks/useUserHook'
 
 export default function CreateUserPage() {
 
   const form = useForm({ initialUserForm })
-
   const { register, handleSubmit, reset, formState, control } = form
+  const { handleCreateUser } = useUserHook();
   const { errors } = formState
 
   const onReset = () => {
@@ -18,8 +18,7 @@ export default function CreateUserPage() {
   }
 
   const onSubmit = (data) => {
-    createUser(data);
-    console.log(data)
+    handleCreateUser(data)
   }
 
   return (

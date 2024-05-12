@@ -2,8 +2,7 @@ import {
   AppBar,
   Button,
   IconButton,
-  Toolbar,
-  Typography,
+  Toolbar
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import React from "react";
@@ -21,9 +20,6 @@ export default function Header() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
-          </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>

@@ -1,29 +1,13 @@
-import {  Divider, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { getPolicies } from '../hooks/usePolicyAPI';
-import { useSnack } from '../../theme/Snackbar/SnackBarProvider';
+import { Divider, Typography } from '@mui/material';
+import React, { useEffect } from 'react';
+import usePolicy from '../hooks/usePolicy';
 
 export default function PoliciesPage() {
-    const [data, setData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const snack = useSnack();
 
+    const { data, isLoading, handleGetPolicies } = usePolicy()
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const policiesData = await getPolicies();
-                setData(policiesData);
-                snack('success','petitions gained successfully')
-            } catch (error) {
-                console.error('Error fetching policies:', error);
-                snack('error', error)
-            } finally {
-                setIsLoading(false); // Set isLoading to false regardless of success or failure
-            }
-        };
-
-        fetchData(); // Call the fetchData function
-    }, [snack]);
+        handleGetPolicies()
+    }, [handleGetPolicies])
 
     return (
         <div>
