@@ -1,6 +1,8 @@
-like literally everything lol
+-Finish Auth Helpers (axios hook which sticks auth bearer to requests, etc.)
+-^need user provider for token, need axios hook to set header with token from user provider
 
--make hook that is "inbetween" API and page for "business" logic (such as portraying snackbar etc.)
-
+-Refactor with auth in mind?
 
 -Models might be unneeded- all our models in c# are "flat" (no nested objects) (normalizing unneeded)
+
+-make hook that is "inbetween" API and page for "business" logic (such as portraying snackbar etc.) //Tentatively done

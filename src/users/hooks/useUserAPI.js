@@ -20,3 +20,13 @@ export const getUsers = async () => {
         return Promise.reject(error.message);
     }
 }
+
+export const loginUser = async(loginInfo)=>{
+    try{
+        const {user} = await axios.post(`${API_URL}/Users`,loginInfo)
+        return user
+    }
+    catch(error){
+        return Promise.reject(error.message)
+    }
+}
