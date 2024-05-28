@@ -1,10 +1,10 @@
 import React from 'react'
-import FormTemplate from '../forms/FormTemplate'
 import { TextField } from '@mui/material'
 import { useForm } from 'react-hook-form'
-import initialUserForm from './formhelper/initialUserForm'
+import initialUserForm from '../formhelper/initialUserForm'
 import { DevTool } from '@hookform/devtools'
-import useUserHook from './hooks/useUserHook'
+import useUserHook from '../hooks/useUserHook'
+import FormTemplate from '../../forms/FormTemplate'
 
 export default function CreateUserPage() {
 

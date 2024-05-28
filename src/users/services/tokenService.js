@@ -1,7 +1,7 @@
 import { jwtDecode } from "jwt-decode"
 
 const TOKEN_KEY="token"
-export const setToken=(token)=> {
+export const setTokenToLocalStorage=(token)=> {
     localStorage.setItem(TOKEN_KEY,token)
 }
 
