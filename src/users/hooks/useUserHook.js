@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import useAxios from "../../hooks/useAxios";
 import {
+  getUserFromToken,
   removeToken,
   setTokenToLocalStorage,
 } from "../../users/services/tokenService";
@@ -24,13 +25,15 @@ export default function useUserHook() {
         const token = await loginUser(loginModel);
         setTokenToLocalStorage(token);
         setToken(token);
+        const user = getUserFromToken();
+        setUser(user);
         navigate(ROUTES.ROOT);
         snack("success", "Login Successful!");
       } catch (error) {
         snack("error", error);
       }
     },
-    [setToken, navigate, snack]
+    [setToken, setUser, snack, navigate]
   );
 
   const handleCreateUser = useCallback(
@@ -62,7 +65,7 @@ export default function useUserHook() {
   const handleLogout = useCallback(() => {
     setUser(null);
     removeToken();
-  },[setUser]);
+  }, [setUser]);
 
   return {
     data,
@@ -70,6 +73,6 @@ export default function useUserHook() {
     handleLoginUser,
     handleCreateUser,
     handleGetUsers,
-    handleLogout
+    handleLogout,
   };
 }
