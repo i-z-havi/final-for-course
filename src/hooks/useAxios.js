@@ -8,8 +8,9 @@ const useAxios = () => {
     const { token } = useLocalStorageUser()
 
     useEffect(() => {
-        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-        const requestIntercept=axios.interceptors.request.use(data=>{
+        console.log(token);
+        axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+        const requestIntercept=axios.interceptors.request.use((data)=>{
             return Promise.resolve(data);
         })
 

@@ -18,17 +18,13 @@ export default function CreatePolicyForm() {
   const { errors } = formState
   const {user} = useLocalStorageUser();
 
-console.log(user);
-
   const onReset = () => {
     reset();
   }
 
   const onSubmit = (data) => {
     data={...data,"CreatorId":user.id}
-    console.log(data);
     handleCreatePolicy(data);
-    console.log(data);
   }
 
   if(!user) return <Navigate replace to={ROUTES.ROOT}/>

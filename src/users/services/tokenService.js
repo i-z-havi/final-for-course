@@ -10,6 +10,7 @@ export const getUserFromToken=()=>{
         const token = localStorage.getItem(TOKEN_KEY)
         const user = jwtDecode(token)
         user.isAdmin = user.isAdmin==="True";
+        console.log(user);
         return user
     }
     catch(error){

@@ -15,7 +15,7 @@ export default function CreateUserPage() {
   const { register, handleSubmit, reset, formState, control } = form
   const { handleCreateUser } = useUserHook();
   const { errors } = formState
-  const user = useLocalStorageUser();
+  const {user} = useLocalStorageUser();
   const onReset = () => {
     reset()
   }

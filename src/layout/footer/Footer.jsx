@@ -8,6 +8,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { useLocalStorageUser } from '../../users/providers/UserProvider';
+import ChecklistIcon from '@mui/icons-material/Checklist';
 
 export default function Footer() {
   const navigate = useNavigate()
@@ -21,6 +22,11 @@ export default function Footer() {
               label="Landing Page" 
               icon={<HouseIcon />} 
               onClick={() => navigate(ROUTES.ROOT)} 
+            />
+            <BottomNavigationAction 
+            label="All Petitions"
+            icon={<ChecklistIcon/>}
+            onClick={() => navigate(ROUTES.POLICY_PAGE)} 
             />
             <BottomNavigationAction 
               label="Sandbox" 
@@ -39,6 +45,12 @@ export default function Footer() {
               icon={<CheckCircleIcon />} 
               onClick={() => navigate(ROUTES.MY_POLICIES)} 
               sx={{ display: user ? 'inline-flex' : 'none' }}
+            />
+             <BottomNavigationAction 
+              label="Pending Petitions" 
+              icon={<TipsAndUpdatesIcon />} 
+              onClick={() => navigate(ROUTES.PENDING_POLICIES)} //update later 
+              sx={{ display: user && user.isAdmin ? 'inline-flex' : 'none' }}
             />
             <BottomNavigationAction 
               label="New User" 

@@ -9,6 +9,7 @@ import ROUTES from './routesModel'
 import PoliciesPage from '../policies/pages/PoliciesPage'
 import LoginPage from '../users/pages/LoginPage'
 import MyPoliciesPage from '../policies/pages/MyPoliciesPage'
+import PendingPoliciesPage from '../policies/pages/PendingPoliciesPage'
 
 export default function Router() {
   return (
@@ -20,6 +21,7 @@ export default function Router() {
         <Route path={ROUTES.POLICY_PAGE} element={<PoliciesPage/>}/>
         <Route path={ROUTES.LOGIN_PAGE} element={<LoginPage/>}/>
         <Route path={ROUTES.MY_POLICIES} element={<MyPoliciesPage/>}/>
+        <Route path={ROUTES.PENDING_POLICIES} element={<PendingPoliciesPage/>}/>
         <Route path="*" element={<ErrorPage/>}/>
     </Routes>
   );

@@ -63,7 +63,8 @@ export default function useUserHook() {
   const handleLogout = useCallback(() => {
     setUser(null);
     removeToken();
-  }, [setUser]);
+    navigate(ROUTES.ROOT)
+  }, [setUser,navigate]);
 
   return {
     data,
