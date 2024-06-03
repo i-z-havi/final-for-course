@@ -40,9 +40,7 @@ export default function useUserHook() {
     async (user) => {
       try {
         await createUser(user);
-        console.log(user.email);
-        console.log(user.password);
-        await handleLoginUser({ email: user.Email, password: user.Password });
+        await handleLoginUser({ UserName: user.Email, Password: user.Password });
         navigate(ROUTES.ROOT);
       } catch (error) {
         snack("error", error);

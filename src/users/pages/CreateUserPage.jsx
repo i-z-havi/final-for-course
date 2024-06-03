@@ -5,6 +5,9 @@ import initialUserForm from '../formhelper/initialUserForm'
 import { DevTool } from '@hookform/devtools'
 import useUserHook from '../hooks/useUserHook'
 import FormTemplate from '../../forms/FormTemplate'
+import { useLocalStorageUser } from '../providers/UserProvider'
+import { Navigate } from 'react-router-dom'
+import ROUTES from '../../routes/routesModel'
 
 export default function CreateUserPage() {
 
@@ -12,7 +15,7 @@ export default function CreateUserPage() {
   const { register, handleSubmit, reset, formState, control } = form
   const { handleCreateUser } = useUserHook();
   const { errors } = formState
-
+  const user = useLocalStorageUser();
   const onReset = () => {
     reset()
   }
@@ -20,6 +23,8 @@ export default function CreateUserPage() {
   const onSubmit = (data) => {
     handleCreateUser(data)
   }
+
+  if (user) return <Navigate replace to={ROUTES.ROOT} />
 
   return (
     <>

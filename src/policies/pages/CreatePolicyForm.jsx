@@ -5,6 +5,9 @@ import { TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 import usePolicy from '../hooks/usePolicy';
+import { useLocalStorageUser } from '../../users/providers/UserProvider';
+import ROUTES from '../../routes/routesModel';
+import { Navigate } from 'react-router-dom';
 
 export default function CreatePolicyForm() {
 
@@ -13,15 +16,22 @@ export default function CreatePolicyForm() {
   const { register, handleSubmit, reset, formState, control } = form
   const { handleCreatePolicy } = usePolicy();
   const { errors } = formState
+  const {user} = useLocalStorageUser();
+
+console.log(user);
 
   const onReset = () => {
     reset();
   }
 
   const onSubmit = (data) => {
+    data={...data,"CreatorId":user.id}
+    console.log(data);
     handleCreatePolicy(data);
     console.log(data);
   }
+
+  if(!user) return <Navigate replace to={ROUTES.ROOT}/>
 
   return (
     <>

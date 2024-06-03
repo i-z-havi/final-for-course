@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import { useSnack } from '../../theme/Snackbar/SnackBarProvider';
-import { createPolicy, getPolicies } from './usePolicyAPI';
+import { createPolicy, getMyPolicies, getPolicies } from './usePolicyAPI';
 import { useNavigate } from 'react-router-dom';
 import ROUTES from '../../routes/routesModel';
 
@@ -23,6 +23,19 @@ export default function usePolicy() {
         }
     }, [snack]);
 
+    const handleGetMyPolicies = useCallback(async () => {
+        try {
+            const policiesData = await getMyPolicies()
+            setData(policiesData)
+            setIsLoading(false)
+            snack('success', 'Petitions fetched successfully!')
+        }
+        catch {
+            setIsLoading(false)
+            snack('error', 'Error fetching petitions.')
+        }
+    }, [snack]);
+
     const handleCreatePolicy = useCallback(async (policy) => {
         try {
             await createPolicy(policy)
@@ -34,5 +47,5 @@ export default function usePolicy() {
         }
     }, [snack,navigate])
 
-    return { data, isLoading, handleGetPolicies, handleCreatePolicy }
+    return { data, isLoading, handleGetPolicies, handleCreatePolicy, handleGetMyPolicies }
 }

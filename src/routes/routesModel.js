@@ -4,7 +4,8 @@ const ROUTES = {
     CREATE_POLICY:"/new_petition",
     CREATE_USER:"/new_user",
     POLICY_PAGE:"/petitions",
-    LOGIN_PAGE:"/login"
+    LOGIN_PAGE:"/login",
+    MY_POLICIES:"/my_policies"
 }
 
 export default ROUTES;

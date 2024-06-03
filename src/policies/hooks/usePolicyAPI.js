@@ -16,7 +16,6 @@ export const getPolicies=async()=>{
     try{
         const response = await axios.get(`${apiUrl}/Policy`)
         const data=response.data
-        console.log(data);
         return data
     }
     catch (error){
@@ -24,4 +23,15 @@ export const getPolicies=async()=>{
     }
 };
 
-
+export const getMyPolicies=async()=>{
+    try{
+        //WHY DOES THIS NOT WORK
+        const response = await axios.get(`${apiUrl}/Policy/my_petitions`)
+        const data=response.data
+        console.log(data);
+        return data
+    }
+    catch (error){
+        return Promise.reject(error.message)
+    }
+};

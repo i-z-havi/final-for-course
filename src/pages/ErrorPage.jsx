@@ -4,7 +4,7 @@ import React from 'react'
 export default function Error() {
   return (
     <Container> 
-        <div>Error</div>
+        <div>Error! Page does not exist.</div>
     </Container>
   )
 }
