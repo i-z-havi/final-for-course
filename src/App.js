@@ -10,15 +10,15 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <MyThemeProvider>
-          <UserProvider>
-            <SnackBarProvider>
+        <UserProvider>
+          <SnackBarProvider>
+            <MyThemeProvider>
               <Layout>
                 <Router />
               </Layout>
-            </SnackBarProvider>
-          </UserProvider>
-        </MyThemeProvider>
+            </MyThemeProvider>
+          </SnackBarProvider>
+        </UserProvider>
       </BrowserRouter>
     </>
   );

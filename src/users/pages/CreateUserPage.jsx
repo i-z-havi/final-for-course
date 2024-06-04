@@ -15,12 +15,13 @@ export default function CreateUserPage() {
   const { register, handleSubmit, reset, formState, control } = form
   const { handleCreateUser } = useUserHook();
   const { errors } = formState
-  const {user} = useLocalStorageUser();
+  const { user } = useLocalStorageUser();
   const onReset = () => {
     reset()
   }
 
   const onSubmit = (data) => {
+    console.log(data);
     handleCreateUser(data)
   }
 
@@ -49,6 +50,9 @@ export default function CreateUserPage() {
           error={!!errors.Password}
           helperText={errors.Password?.message}
           sx={{ m: 2 }} />
+        <input type='file' name='ProfilePicture' label='Profile Picture'
+          {...register("ProfilePicture", { required: "Profile Picture is required!" })}
+          sx={{ m: 2 }} />  
       </FormTemplate>
       <DevTool control={control} />
     </>

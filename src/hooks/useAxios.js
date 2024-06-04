@@ -1,14 +1,12 @@
 import { useEffect } from 'react'
 import { useSnack } from '../theme/Snackbar/SnackBarProvider'
 import axios from 'axios'
-import { useLocalStorageUser } from '../users/providers/UserProvider'
 
 const useAxios = () => {
     const snack = useSnack()
-    const { token } = useLocalStorageUser()
 
     useEffect(() => {
-        console.log(token);
+        const token =localStorage.getItem("token")
         axios.defaults.headers.common["Authorization"] = "Bearer " + token;
         const requestIntercept=axios.interceptors.request.use((data)=>{
             return Promise.resolve(data);
@@ -23,7 +21,7 @@ const useAxios = () => {
             axios.interceptors.request.eject(requestIntercept)
             axios.interceptors.response.eject(responseIntercept)
         }
-    },[snack,token])
+    },[snack])
 }
 
 export default useAxios;

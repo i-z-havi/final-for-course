@@ -3,12 +3,14 @@ import { useSnack } from '../../theme/Snackbar/SnackBarProvider';
 import { createPolicy, getMyPolicies, getPendingPolicies, getPolicies } from './usePolicyAPI';
 import { useNavigate } from 'react-router-dom';
 import ROUTES from '../../routes/routesModel';
+import useAxios from '../../hooks/useAxios';
 
 export default function usePolicy() {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const snack = useSnack();
     const navigate = useNavigate()
+    useAxios()
 
     const handleGetPolicies = useCallback(async () => {
         try {
