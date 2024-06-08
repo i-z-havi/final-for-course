@@ -1,5 +1,6 @@
 import {
   AppBar,
+  Avatar,
   Box,
   Button,
   IconButton,
@@ -47,6 +48,7 @@ export default function Header() {
             >
               Log Out
             </Button>
+            <Avatar src={user.profilePicture}/>
           </>
         ) : (
           <Button color="inherit" onClick={() => nav(ROUTES.LOGIN_PAGE)}>

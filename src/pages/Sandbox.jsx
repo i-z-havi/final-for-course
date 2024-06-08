@@ -1,20 +1,21 @@
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Avatar, Box, Button, Container, MenuItem, Select, Typography } from "@mui/material";
 import React, { useContext } from "react";
 import { ColorModeContext } from "../theme/MyThemeProvider";
 import useUserHook from "../users/hooks/useUserHook";
-// import { useTheme } from '@emotion/react'
-//both useThemes seem interchangable?
+import { useLocalStorageUser } from "../users/providers/UserProvider";
 
 export default function Sandbox() {
   const colorMode = useContext(ColorModeContext); //should put this in header where dark mode toggle will be
-  const {handleLogout} = useUserHook();
-
+  const { handleLogout } = useUserHook();
+  const { user } = useLocalStorageUser();
+  console.log(user);
   return (
     <>
       <Box>
         <Typography align="center" component="h1" variant="h2">
           Sandbox
         </Typography>
+        {user && <img src={user.profilePicture} alt={user.profilePicture} />}
         <Container
           style={{
             display: "flex",
@@ -26,10 +27,20 @@ export default function Sandbox() {
           <Button variant="contained" onClick={colorMode.toggleColorMode}>
             Click me!
           </Button>
+          <img src="/assets/images/testimage.jpeg" alt="test" />
+          <form>
+            <Select>
+              <MenuItem value="pfp1">pfp1</MenuItem>
+              <MenuItem value="pfp2">
+                <Avatar alt="pfp2" src="/assets/images/testimage.jpeg" />
+              </MenuItem>
+            </Select>
+            <input type="submit" />
+          </form>
         </Container>
         <Container sx={{ border: 1, width: 300, textAlign: "center" }}>
           <Typography>This is a Container</Typography>
-          <Button variant="contained" onClick={()=>handleLogout()}> Log out</Button>
+          <Button variant="contained" onClick={() => handleLogout()}> Log out</Button>
         </Container>
       </Box>
     </>

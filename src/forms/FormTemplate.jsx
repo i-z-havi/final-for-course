@@ -12,7 +12,7 @@ export default function FormTemplate({ children, title, handleSubmit, handleRese
             </Typography>
             <Divider />
             <Box justifyContent='center' display='flex'>
-                <Grid container direction='row' justifyContent='center' spacing={0} sx={{ p: 3, maxWidth: '800px' }}>
+                <Grid container direction='row' justifyContent='center' spacing={0} sx={{ p: 3, maxWidth: '560px' }}>
                     {children}
                 </Grid>
             </Box>

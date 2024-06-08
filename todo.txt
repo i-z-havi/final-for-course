@@ -3,3 +3,5 @@
 -make hook that is "inbetween" API and page for "business" logic (such as portraying snackbar etc.) //Tentatively done
 
 -IMPORTANT: SEE WHY JWT GETS DELETED FROM USEAXIOS(PROVIDER?) AFTER RELOAD //tentavively fixed, sets token in useaxios hook
+
+-If im not going to save to database (unneeded in project rubric) allowing users to select pfp from different options could be nice

@@ -1,5 +1,5 @@
-import React from 'react'
-import { TextField } from '@mui/material'
+import React, { useState } from 'react'
+import { Avatar, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import initialUserForm from '../formhelper/initialUserForm'
 import { DevTool } from '@hookform/devtools'
@@ -11,6 +11,7 @@ import ROUTES from '../../routes/routesModel'
 
 export default function CreateUserPage() {
 
+  const [pfp, setPfp] = useState('');
   const form = useForm({ initialUserForm })
   const { register, handleSubmit, reset, formState, control } = form
   const { handleCreateUser } = useUserHook();
@@ -20,9 +21,15 @@ export default function CreateUserPage() {
     reset()
   }
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    if(pfp===''){
+      errors.ProfilePicture.message="Profile Picture is required!"
+    }
     handleCreateUser(data)
+  }
+
+  const handleChange =(event)=>{
+    setPfp(event.target.value)
   }
 
   if (user) return <Navigate replace to={ROUTES.ROOT} />
@@ -50,9 +57,27 @@ export default function CreateUserPage() {
           error={!!errors.Password}
           helperText={errors.Password?.message}
           sx={{ m: 2 }} />
-        <input type='file' name='ProfilePicture' label='Profile Picture'
-          {...register("ProfilePicture", { required: "Profile Picture is required!" })}
-          sx={{ m: 2 }} />  
+        <FormControl sx={{ minWidth: "155px" }}>
+          <InputLabel id="pfp">Profile Picture</InputLabel>
+          <Select {...register("ProfilePicture", { required: "Profile Picture is required!" })}
+            id='ProfilePicture'
+            labelId="pfp"
+            label="Profile Picture"
+            onChange={handleChange}
+            value={pfp}
+            error={!!errors.ProfilePicture}
+          >
+            <MenuItem value="/assets/images/pexels-altman-5499191.jpg" >
+              <Avatar alt="pic option 1" src="/assets/images/pexels-altman-5499191.jpg" sx={{ ml: "35%" }} />
+            </MenuItem>
+            <MenuItem value="/assets/images/pexels-artempodrez-7048014.jpg">
+              <Avatar alt="pic option 2" src="/assets/images/pexels-artempodrez-7048014.jpg" sx={{ ml: "35%" }} />
+            </MenuItem>
+            <MenuItem value="/assets/images/pexels-roman-bengaiev-2198690-8446694.jpg">
+              <Avatar alt="pic option 3" src="/assets/images/pexels-roman-bengaiev-2198690-8446694.jpg" sx={{ ml: "35%" }} />
+            </MenuItem>
+          </Select>
+        </FormControl>
       </FormTemplate>
       <DevTool control={control} />
     </>
