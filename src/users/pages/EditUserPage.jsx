@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Avatar, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material'
+import { Avatar, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
 import useUserHook from '../hooks/useUserHook'
@@ -7,6 +7,7 @@ import FormTemplate from '../../forms/FormTemplate'
 import { useLocalStorageUser } from '../providers/UserProvider'
 import { Navigate } from 'react-router-dom'
 import ROUTES from '../../routes/routesModel'
+import LoadSpinner from '../../components/LoadSpinner'
 
 export default function EditUserPage() {
 
@@ -94,7 +95,7 @@ export default function EditUserPage() {
                             </Select>
                         </FormControl>
                     </FormTemplate>
-                    <DevTool control={control} /></> : <Typography>Loading...</Typography>}
+                    <DevTool control={control} /></> : <LoadSpinner/>}
         </>
     )
 }

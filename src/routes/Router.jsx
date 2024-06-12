@@ -11,6 +11,7 @@ import LoginPage from '../users/pages/LoginPage'
 import MyPoliciesPage from '../policies/pages/MyPoliciesPage'
 import PendingPoliciesPage from '../policies/pages/PendingPoliciesPage'
 import EditUserPage from '../users/pages/EditUserPage'
+import DeleteUserPage from '../users/pages/DeleteUserPage'
 
 export default function Router() {
   return (
@@ -24,6 +25,7 @@ export default function Router() {
         <Route path={ROUTES.MY_POLICIES} element={<MyPoliciesPage/>}/>
         <Route path={ROUTES.PENDING_POLICIES} element={<PendingPoliciesPage/>}/>
         <Route path={ROUTES.EDIT_USER} element={<EditUserPage/>}/>
+        <Route path={ROUTES.DELETE_USERS} element={<DeleteUserPage/>}/>
         <Route path="*" element={<ErrorPage/>}/>
     </Routes>
   );

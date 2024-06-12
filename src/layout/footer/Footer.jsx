@@ -1,15 +1,15 @@
 import { BottomNavigation, BottomNavigationAction, Box, Paper } from '@mui/material'
-import HouseIcon from '@mui/icons-material/House';
-import React from 'react'
+import { useLocalStorageUser } from '../../users/providers/UserProvider';
 import { useNavigate } from 'react-router-dom'
+import React from 'react'
 import ROUTES from '../../routes/routesModel'
+import HouseIcon from '@mui/icons-material/House';
 import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import { useLocalStorageUser } from '../../users/providers/UserProvider';
 import ChecklistIcon from '@mui/icons-material/Checklist';
-import EditIcon from '@mui/icons-material/Edit';
 
 export default function Footer() {
   const navigate = useNavigate()
@@ -60,10 +60,10 @@ export default function Footer() {
             sx={{ display: !user ? 'inline-flex' : 'none' }}
           />
           <BottomNavigationAction
-            label="Edit User"
-            icon={<EditIcon />}
-            onClick={() => navigate(ROUTES.EDIT_USER)}
-            sx={{ display: user ? 'inline-flex' : 'none' }}
+            label="Manage Users"
+            icon={<PersonRemoveIcon />}
+            onClick={() => navigate(ROUTES.DELETE_USERS)}
+            sx={{ display: user && user.isAdmin ? 'inline-flex' : 'none' }}
           />
         </BottomNavigation>
       </Paper>

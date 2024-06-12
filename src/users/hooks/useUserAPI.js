@@ -1,32 +1,9 @@
 import axios from "axios";
 const API_URL = "https://localhost:7192/api";
 
-export const createUser = async (user) => {
-  try {
-    const { data } = await axios.post(`${API_URL}/Users`, user);
-    return data;
-  } catch (error) {
-    return Promise.reject(error.message);
-  }
-};
-
-export const updateUser = async (updatedUser, id) => {
-  try {
-    console.log(updatedUser)
-    console.log(id);
-    const { data } = await axios.put(`${API_URL}/Users/${id}`, updatedUser);
-    return data
-  } catch (error) {
-    console.log(error)
-    return Promise.reject(error.message);
-  }
-}
-
 export const getUser = async (id) => {
   try {
-    console.log("get user entered");
     const { data } = await axios.get(`${API_URL}/Users/${id}`);
-    console.log(data);
     return data;
   } catch (error) {
     return Promise.reject(error.message);
@@ -42,8 +19,26 @@ export const getUsers = async () => {
   }
 };
 
+export const createUser = async (user) => {
+  try {
+    const { data } = await axios.post(`${API_URL}/Users`, user);
+    return data;
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+};
+
+export const updateUser = async (updatedUser, id) => {
+  try {
+    const { data } = await axios.put(`${API_URL}/Users/${id}`, updatedUser);
+    return data
+  } catch (error) {
+    console.log(error)
+    return Promise.reject(error.message);
+  }
+}
+
 export const loginUser = async (loginInfo) => {
-  console.log(loginInfo);
   try {
     const { data } = await axios.post(`${API_URL}/Users/login`, loginInfo);
     return data;
@@ -52,3 +47,13 @@ export const loginUser = async (loginInfo) => {
     return Promise.reject(error.message);
   }
 };
+
+export const deleteUser = async (id) => {
+  console.log(id);
+  try {
+    const { data } = await axios.delete(`${API_URL}/Users/${id}`);
+    return data;
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+}

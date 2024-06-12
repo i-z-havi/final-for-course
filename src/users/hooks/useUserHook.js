@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { useSnack } from "../../theme/Snackbar/SnackBarProvider";
-import { createUser, getUser, getUsers, loginUser, updateUser } from "./useUserAPI";
+import { createUser, deleteUser, getUser, getUsers, loginUser, updateUser } from "./useUserAPI";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import useAxios from "../../hooks/useAxios";
@@ -36,6 +36,17 @@ export default function useUserHook() {
     [setToken, setUser, snack, navigate]
   );
 
+  const handleDeleteUser = useCallback(
+    async (id) => {
+      try {
+        await deleteUser(id);
+        snack("success,Deletion successful!");
+      } catch (error) {
+        snack("error", error);
+      }
+    }, [snack]
+  );
+
   const handleCreateUser = useCallback(
     async (user) => {
       try {
@@ -60,7 +71,7 @@ export default function useUserHook() {
         snack("error", error);
       }
     }, [setUser, snack]
-  )
+  );
 
   const handleGetUser = useCallback(async (id) => {
     try {
@@ -76,12 +87,13 @@ export default function useUserHook() {
       snack("error", error);
     }
 
-  },[snack]);
+  }, [snack]);
 
   const handleGetUsers = useCallback(async () => {
     try {
       const users = await getUsers();
       setData(users);
+      setLoading(false)
       snack("success", "Users successfully retrieved!");
       setLoading(false);
       return users;
@@ -104,6 +116,7 @@ export default function useUserHook() {
     handleCreateUser,
     handleUpdateUser,
     handleGetUsers,
-    handleLogout
+    handleLogout,
+    handleDeleteUser
   };
 }
