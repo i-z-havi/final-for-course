@@ -38,7 +38,18 @@ export const getMyPolicies=async()=>{
 export const getPendingPolicies=async()=>{
     try{
         const response = await axios.get(`${apiUrl}/Policy/pending`)
-        console.log("response passed successfully");
+        const data=response.data
+        return data
+    }
+    catch (error){
+        return Promise.reject(error.message);
+    }
+}
+
+export const allowPolicy=async(id)=>{
+    try{
+        console.log(id);
+        const response = await axios.patch(`${apiUrl}/Policy/allow/${id}`)
         const data=response.data
         return data
     }

@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import { useSnack } from '../../theme/Snackbar/SnackBarProvider';
-import { createPolicy, getMyPolicies, getPendingPolicies, getPolicies } from './usePolicyAPI';
+import { allowPolicy, createPolicy, getMyPolicies, getPendingPolicies, getPolicies } from './usePolicyAPI';
 import { useNavigate } from 'react-router-dom';
 import ROUTES from '../../routes/routesModel';
 import useAxios from '../../hooks/useAxios';
@@ -27,10 +27,12 @@ export default function usePolicy() {
 
     const handleGetMyPolicies = useCallback(async () => {
         try {
+            setIsLoading(true)
             const policiesData = await getMyPolicies()
             setData(policiesData)
             setIsLoading(false)
             snack('success', 'Petitions fetched successfully!')
+            return
         }
         catch {
             setIsLoading(false)
@@ -38,17 +40,19 @@ export default function usePolicy() {
         }
     }, [snack]);
 
-    const handleGetPendingPolicies=useCallback(async()=>{
-        try{
-            const data = await getPendingPolicies();
-            setData(data)
+    const handleGetPendingPolicies = useCallback(async () => {
+        try {
+            setIsLoading(true)
+            const response = await getPendingPolicies();
+            setData(response)
             setIsLoading(false)
-            snack('success','Petitions fetched successfully!')
-        }catch{
+            snack('success', 'Petitions fetched successfully!')
+            return response;
+        } catch {
             setIsLoading(false)
             snack('error', 'Error fetching petitions.')
         }
-    },[snack])
+    }, [snack])
 
     const handleCreatePolicy = useCallback(async (policy) => {
         try {
@@ -56,10 +60,28 @@ export default function usePolicy() {
             snack('success', 'Petition created successfully!')
             navigate(ROUTES.ROOT)
         }
-        catch(error) {
+        catch (error) {
             snack('error', error)
         }
-    }, [snack,navigate])
+    }, [snack, navigate])
 
-    return { data, isLoading, handleGetPolicies, handleCreatePolicy, handleGetMyPolicies,handleGetPendingPolicies }
+    const handleAllowPolicy = useCallback(async (policy) => {
+        try {
+            await allowPolicy(policy)
+            snack('success', 'Petition allowed successfully!')
+        }
+        catch (error) {
+            snack('error', error)
+        }
+    }, [snack])
+
+    return {
+        data,
+        isLoading,
+        handleGetPolicies,
+        handleCreatePolicy,
+        handleGetMyPolicies,
+        handleGetPendingPolicies,
+        handleAllowPolicy
+    }
 }

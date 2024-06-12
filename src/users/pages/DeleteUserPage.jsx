@@ -10,8 +10,8 @@ import ROUTES from '../../routes/routesModel';
 export default function DeleteUserPage() {
     const { loading, handleGetUsers, handleDeleteUser, handleLogout } = useUserHook();
     const { user } = useLocalStorageUser();
-    const [rows, setRows] = useState([]);
     const [selectedRows, setSelectedRows] = useState([]);
+    const [rows, setRows] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -49,11 +49,11 @@ export default function DeleteUserPage() {
             width: 130,
         }
     ];
-    
+
     if (!user || user.isAdmin === false) return navigate(ROUTES.ROOT)
 
     return (
-        <div>
+        <>
             {!loading ?
                 <>
                     <Grid
@@ -63,13 +63,13 @@ export default function DeleteUserPage() {
                         alignItems="center"
                         sx={{
                             minwidth: "25vw",
-                            pt: "3%"
+                            pt: "3%",
+                            height:500
                         }}>
                         <DataGrid columns={columns}
                             sx={{ minwidth: "25vw", width: "75%" }}
                             rows={rows}
                             onRowSelectionModelChange={(data) => {
-                                console.log(data);
                                 setSelectedRows(data)
                             }}
                             initialState={{
@@ -91,7 +91,6 @@ export default function DeleteUserPage() {
                 :
                 <LoadSpinner />
             }
-
-        </div>
+        </>
     )
 }
