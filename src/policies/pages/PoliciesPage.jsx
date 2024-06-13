@@ -1,6 +1,8 @@
 import { Divider, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import usePolicy from '../hooks/usePolicy';
+import LoadSpinner from '../../components/LoadSpinner.jsx'
+import PolicyPresenter from '../components/PolicyPresenter.jsx';
 
 export default function PoliciesPage() {
 
@@ -14,11 +16,9 @@ export default function PoliciesPage() {
             <Typography variant='h1' align='center'>Petitions</Typography>
             <Divider />
             {isLoading ? (
-                <Typography>Loading...</Typography>
+                <LoadSpinner/>
             ) : (
-                data.map((policy) => (
-                    <Typography key={policy.id}>{policy.title}</Typography> // Assuming policy has an id
-                ))
+                <PolicyPresenter policies={data}/>
             )}
         </div>
     );

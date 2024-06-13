@@ -98,6 +98,7 @@ export default function useUserHook() {
       setLoading(false);
       return users;
     } catch (error) {
+      setLoading(false)
       snack("error", error);
     }
   }, [snack]);

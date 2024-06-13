@@ -1,7 +1,7 @@
 const ROUTES = {
     ROOT: "/",
     SANDBOX: "/sandbox",
-    CREATE_POLICY:"/new_petition",
+    CREATE_POLICY:"/new_policy",
     CREATE_USER:"/new_user",
     EDIT_USER: "/edit_user/",
     POLICY_PAGE:"/petitions",
@@ -9,7 +9,8 @@ const ROUTES = {
     MY_POLICIES:"/my_petitions",
     PENDING_POLICIES:"/pending",
     DELETE_USERS:"/delete_users",
-    SPECIFIC_POLICY:"/petition"
+    SPECIFIC_POLICY:"/petition",
+    EDIT_PETITION:"/edit_policy"
 }
 
 export default ROUTES;

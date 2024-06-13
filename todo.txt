@@ -4,4 +4,7 @@
 
 -IMPORTANT: SEE WHY JWT GETS DELETED FROM USEAXIOS(PROVIDER?) AFTER RELOAD //tentavively fixed, sets token in useaxios hook
 
--Finish allowing petitions
+-Finish allowing petitions // done!
+
+-FINISH UPDATE PETITIONS U DIDNT PROGRAM IT
+-think of how to do this! authorize in back end with http context, and front end redirection too?

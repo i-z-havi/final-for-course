@@ -1,4 +1,14 @@
-import { Avatar, Box, Button, Container, MenuItem, Select, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  Container,
+  Grid,
+  MenuItem,
+  Select,
+  Stack,
+  Typography,
+} from "@mui/material";
 import React, { useContext } from "react";
 import { ColorModeContext } from "../theme/MyThemeProvider";
 import useUserHook from "../users/hooks/useUserHook";
@@ -40,9 +50,46 @@ export default function Sandbox() {
         </Container>
         <Container sx={{ border: 1, width: 300, textAlign: "center" }}>
           <Typography>This is a Container</Typography>
-          <Button variant="contained" onClick={() => handleLogout()}> Log out</Button>
+          <Button variant="contained" onClick={() => handleLogout()}>
+            {" "}
+            Log out
+          </Button>
         </Container>
       </Box>
+
+      <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        sx={{ minHeight: "100vh" }}
+      >
+        <Grid item xs={3}>
+          <Stack>
+            <Stack
+              sx={{
+                width: "30vw",
+                mt: 1,
+                border: 1,
+                borderRadius: 2,
+                borderColor: "error.main",
+              }}
+            >
+              <Typography>Test Title</Typography>
+            </Stack>
+            <Stack
+              sx={{
+                mt: 1,
+                border: 1,
+                borderRadius: 2,
+                borderColor: "error.main",
+              }}
+            >
+              <Typography>Test Title</Typography>
+            </Stack>
+          </Stack>
+        </Grid>
+      </Grid>
     </>
   );
 }
