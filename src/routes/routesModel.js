@@ -6,9 +6,10 @@ const ROUTES = {
     EDIT_USER: "/edit_user/",
     POLICY_PAGE:"/petitions",
     LOGIN_PAGE:"/login",
-    MY_POLICIES:"/my_policies",
+    MY_POLICIES:"/my_petitions",
     PENDING_POLICIES:"/pending",
-    DELETE_USERS:"/delete_users"
+    DELETE_USERS:"/delete_users",
+    SPECIFIC_POLICY:"/petition"
 }
 
 export default ROUTES;
