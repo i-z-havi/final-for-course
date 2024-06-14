@@ -95,7 +95,7 @@ export default function EditUserPage() {
                             </Select>
                         </FormControl>
                     </FormTemplate>
-                    <DevTool control={control} /></> : <LoadSpinner/>}
+                    <DevTool control={control} /></> : <LoadSpinner />}
         </>
     )
 }

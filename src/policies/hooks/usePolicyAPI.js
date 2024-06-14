@@ -33,6 +33,15 @@ export const getPolicies = async () => {
     }
 };
 
+export const updatePolicy = async (id, policy) => {
+    try {
+        const {data} = await axios.put(`${apiUrl}/Policy/${id}`, policy)
+        return data;
+    } catch (error) {
+        return Promise.reject(error.message)
+    }
+}
+
 export const signPolicy = async (id) => {
     try {
         const { data } = axios.patch(`${apiUrl}/Policy/${id}`)

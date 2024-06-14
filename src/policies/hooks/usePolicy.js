@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import { useSnack } from '../../theme/Snackbar/SnackBarProvider';
-import { allowPolicy, createPolicy, getMyPolicies, getPendingPolicies, getPolicies, getPolicy, signPolicy } from './usePolicyAPI';
+import { allowPolicy, createPolicy, getMyPolicies, getPendingPolicies, getPolicies, getPolicy, signPolicy, updatePolicy } from './usePolicyAPI';
 import { useNavigate } from 'react-router-dom';
 import ROUTES from '../../routes/routesModel';
 import useAxios from '../../hooks/useAxios';
@@ -31,6 +31,7 @@ export default function usePolicy() {
             setData(policyData);
             setIsLoading(false);
             snack('success', 'Policy retrieved successfully!');
+            return (policyData);
         }
         catch {
             setIsLoading(false);
@@ -77,14 +78,26 @@ export default function usePolicy() {
         }
     }, [snack, navigate])
 
-    const handleSignPolicy = useCallback(async (policy,signed) => {
+    const handleUpdatePolicy = useCallback(
+        async (id, updatedPolicy) => {
+            try {
+                await updatePolicy(id, updatedPolicy);
+                setIsLoading(false);
+                snack("success", "User has been successfully updated!")
+            } catch (error) {
+                snack("error", error);
+            }
+        }, [snack]
+    );
+
+    const handleSignPolicy = useCallback(async (policy, signed) => {
         try {
             await signPolicy(policy);
             if (!signed) {
                 snack('success', 'Petition signed successfully!')
             }
-            else{
-                snack('success', 'Petition unsigned successfully!')   
+            else {
+                snack('success', 'Petition unsigned successfully!')
             }
         } catch (error) {
             snack('error', error)
@@ -110,6 +123,7 @@ export default function usePolicy() {
         handleGetPendingPolicies,
         handleAllowPolicy,
         handleGetPolicy,
-        handleSignPolicy
+        handleSignPolicy,
+        handleUpdatePolicy
     }
 }

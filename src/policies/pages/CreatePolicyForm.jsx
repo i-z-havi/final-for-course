@@ -16,18 +16,18 @@ export default function CreatePolicyForm() {
   const { register, handleSubmit, reset, formState, control } = form
   const { handleCreatePolicy } = usePolicy();
   const { errors } = formState
-  const {user} = useLocalStorageUser();
+  const { user } = useLocalStorageUser();
 
   const onReset = () => {
     reset();
   }
 
   const onSubmit = (data) => {
-    data={...data,"CreatorId":user.id}
+    data = { ...data, "CreatorId": user.id }
     handleCreatePolicy(data);
   }
 
-  if(!user) return <Navigate replace to={ROUTES.ROOT}/>
+  if (!user) return <Navigate replace to={ROUTES.ROOT} />
 
   return (
     <>
@@ -38,7 +38,10 @@ export default function CreatePolicyForm() {
           helperText={errors.Title?.message}
           sx={{ m: 2 }} />
         <TextField label='Subtitle' name='Subtitle'
-          {...register("Subtitle", { required: "Subitle is required.", maxLength: { value: 500, message: "Only 500 characters allowed!" } })}
+          {...register("Subtitle", {
+            required: "Subitle is required.",
+            maxLength: { value: 500, message: "Only 500 characters allowed!" }
+          })}
           error={!!errors.Subtitle}
           helperText={errors.Subtitle?.message}
           sx={{ m: 2 }} />

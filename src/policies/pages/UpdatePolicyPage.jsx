@@ -1,9 +1,7 @@
-import React, { useState } from "react";
 import { useLocalStorageUser } from "../../users/providers/UserProvider";
 import { useForm } from "react-hook-form";
-import useUserHook from "../../users/hooks/useUserHook";
 import usePolicy from "../hooks/usePolicy";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import FormTemplate from "../../forms/FormTemplate";
 import { TextField } from "@mui/material";
@@ -12,21 +10,19 @@ import LoadSpinner from "../../components/LoadSpinner";
 
 export default function UpdatePolicyPage() {
   const { id } = useParams();
-  const { loading, handleGetUser } = useUserHook();
-  const { isLoading, handleGetPolicy } = usePolicy();
+  const { isLoading, data, handleGetPolicy, handleUpdatePolicy } = usePolicy();
   const { user } = useLocalStorageUser();
-  const [pfp, setPfp] = useState("");
+  const navigate = useNavigate()
   const form = useForm({
     defaultValues: async () => {
       const data = await handleGetPolicy(id);
-      setPfp(data.profile);
-      console.log(data);
-      return {
-        FirstName: data.firstName,
-        LastName: data.lastName,
-        Email: data.email,
-        Password: "",
-      };
+      if (data) {
+        return {
+          Title: data.title,
+          Subtitle: data.subtitle,
+          Description: data.description,
+        };
+      }
     },
   });
   const { register, handleSubmit, reset, formState, control } = form;
@@ -35,64 +31,39 @@ export default function UpdatePolicyPage() {
     reset();
   };
 
-  const onSubmit = async (data) => {};
-
-  const handleChange = (event) => {
-    setPfp(event.target.value);
+  const onSubmit = (updatedPolicy) => {
+    handleUpdatePolicy(data.id, updatedPolicy)
+    navigate(ROUTES.ROOT)
   };
 
   if (!user) return <Navigate replace to={ROUTES.ROOT} />;
+  if (!isLoading && (user.id !== data.creatorId)) return <Navigate replace to={ROUTES.ROOT} />;
+
+
 
   return (
     <>
-      {!loading ? (
+      {!isLoading ? (
         <>
-          <FormTemplate
-            handleSubmit={handleSubmit(onSubmit)}
-            handleReset={onReset}
-            title="Edit User"
-          >
-            <TextField
-              label="First Name"
-              name="FirstName"
-              {...register("FirstName", {
-                required: "First Name is required.",
+          <FormTemplate title='Update Policy' handleSubmit={handleSubmit(onSubmit)} handleReset={onReset}>
+            <TextField label='Title' name='Title'
+              {...register("Title", { required: "Title is required.", maxLength: { value: 450, message: "Only 450 characters allowed!" } })}
+              error={!!errors.Title}
+              helperText={errors.Title?.message}
+              sx={{ m: 2 }} />
+            <TextField label='Subtitle' name='Subtitle'
+              {...register("Subtitle", {
+                required: "Subitle is required.",
+                maxLength: { value: 500, message: "Only 500 characters allowed!" }
               })}
-              error={!!errors.FirstName}
-              helperText={errors.FirstName?.message}
-              sx={{ m: 2 }}
-            />
-            <TextField
-              label="Last Name"
-              name="LastName"
-              {...register("LastName", { required: "Last Name is required." })}
-              error={!!errors.LastName}
-              helperText={errors.LastName?.message}
-              sx={{ m: 2 }}
-            />
-            <TextField
-              label="Email"
-              name="Email"
-              {...register("Email", {
-                required: "Email is required.",
-                pattern: {
-                  value: /^\S+@\S+$/i,
-                  message: "Email must be valid.",
-                },
-              })}
-              error={!!errors.Email}
-              helperText={errors.Email?.message}
-              sx={{ m: 2 }}
-            />
-            <TextField
-              label="Password"
-              name="Password"
-              type="password"
-              {...register("Password", { required: "Password is required." })}
-              error={!!errors.Password}
-              helperText={errors.Password?.message}
-              sx={{ m: 2 }}
-            />
+              error={!!errors.Subtitle}
+              helperText={errors.Subtitle?.message}
+              sx={{ m: 2 }} />
+            <TextField label='Description' name='Description'
+              {...register("Description", { required: "Description is required.", maxLength: { value: 4500, message: "Only 4500 characters allowed!" } })}
+              error={!!errors.Description}
+              helperText={errors.Description?.message}
+              fullWidth multiline sx={{ m: 2 }} />
           </FormTemplate>
           <DevTool control={control} />
         </>

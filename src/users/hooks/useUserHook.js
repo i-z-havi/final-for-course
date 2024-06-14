@@ -75,11 +75,7 @@ export default function useUserHook() {
 
   const handleGetUser = useCallback(async (id) => {
     try {
-      console.log("userUserHook:");
-      console.log(id);
       const user = await getUser(id);
-      console.log("User from userUserhook");
-      console.log(user);
       setLoading(false);
       snack("success", "User retrieved successfully!");
       return user;

@@ -33,7 +33,6 @@ export const updateUser = async (updatedUser, id) => {
     const { data } = await axios.put(`${API_URL}/Users/${id}`, updatedUser);
     return data
   } catch (error) {
-    console.log(error)
     return Promise.reject(error.message);
   }
 }
