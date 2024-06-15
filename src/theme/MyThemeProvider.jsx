@@ -54,7 +54,7 @@ export default function MyThemeProvider({ children }) {
 
   const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
   return (
-    <ColorModeContext.Provider value={colorMode}>
+    <ColorModeContext.Provider value={{colorMode,mode}}>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </ColorModeContext.Provider>
   );

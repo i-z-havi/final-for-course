@@ -14,6 +14,8 @@ import EditUserPage from '../users/pages/EditUserPage'
 import DeleteUserPage from '../users/pages/DeleteUserPage'
 import PolicyPage from '../policies/pages/PolicyPage'
 import UpdatePolicyPage from '../policies/pages/UpdatePolicyPage'
+import About from '../pages/About'
+import ManagePoliciesPage from '../policies/pages/ManagePoliciesPage'
 
 export default function Router() {
   return (
@@ -27,9 +29,11 @@ export default function Router() {
       <Route path={ROUTES.MY_POLICIES} element={<MyPoliciesPage />} />
       <Route path={ROUTES.PENDING_POLICIES} element={<PendingPoliciesPage />} />
       <Route path={ROUTES.EDIT_USER} element={<EditUserPage />} />
+      <Route path={ROUTES.MANAGE_POLICIES} element={<ManagePoliciesPage />} />
       <Route path={ROUTES.DELETE_USERS} element={<DeleteUserPage />} />
       <Route path={`${ROUTES.SPECIFIC_POLICY}/:id`} element={<PolicyPage />} />
-      <Route path={`${ROUTES.EDIT_PETITION}/:id`} element={<UpdatePolicyPage/>}/>
+      <Route path={`${ROUTES.EDIT_PETITION}/:id`} element={<UpdatePolicyPage />} />
+      <Route path={`${ROUTES.ABOUT}`} element={<About />} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   );

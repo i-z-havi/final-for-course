@@ -16,9 +16,11 @@ export default function PoliciesPage() {
             <Typography variant='h1' align='center'>Petitions</Typography>
             <Divider />
             {isLoading ? (
-                <LoadSpinner/>
+                <LoadSpinner />
             ) : (
-                <PolicyPresenter policies={data}/>
+                <>
+                    <PolicyPresenter policies={data} />
+                </>
             )}
         </div>
     );

@@ -68,13 +68,13 @@ export default function CreateUserPage() {
             error={!!errors.ProfilePicture}
           >
             <MenuItem value="/assets/images/pexels-altman-5499191.jpg" >
-              <Avatar alt="pic option 1" src="/assets/images/pexels-altman-5499191.jpg" sx={{ ml: "35%" }} />
+              <Avatar alt="profile picture option 1" src="/assets/images/pexels-altman-5499191.jpg" sx={{ ml: "35%" }} />
             </MenuItem>
             <MenuItem value="/assets/images/pexels-artempodrez-7048014.jpg">
-              <Avatar alt="pic option 2" src="/assets/images/pexels-artempodrez-7048014.jpg" sx={{ ml: "35%" }} />
+              <Avatar alt="profile picture option 2" src="/assets/images/pexels-artempodrez-7048014.jpg" sx={{ ml: "35%" }} />
             </MenuItem>
             <MenuItem value="/assets/images/pexels-roman-bengaiev-2198690-8446694.jpg">
-              <Avatar alt="pic option 3" src="/assets/images/pexels-roman-bengaiev-2198690-8446694.jpg" sx={{ ml: "35%" }} />
+              <Avatar alt="profile picture option 3" src="/assets/images/pexels-roman-bengaiev-2198690-8446694.jpg" sx={{ ml: "35%" }} />
             </MenuItem>
           </Select>
         </FormControl>

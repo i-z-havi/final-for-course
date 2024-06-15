@@ -10,7 +10,9 @@ const ROUTES = {
     PENDING_POLICIES:"/pending",
     DELETE_USERS:"/delete_users",
     SPECIFIC_POLICY:"/petition",
-    EDIT_PETITION:"/edit_policy"
+    EDIT_PETITION:"/edit_policy",
+    ABOUT:"/about",
+    MANAGE_POLICIES:"/manage_policies"
 }
 
 export default ROUTES;

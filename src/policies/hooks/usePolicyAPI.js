@@ -12,6 +12,15 @@ export const createPolicy = async (policy) => {
     }
 };
 
+export const deletePolicy = async (id) => {
+    try {
+        const { data } = await axios.delete(`${apiUrl}/Policy/${id}`)
+        return data;
+    } catch (error) {
+        return Promise.reject(error.message)
+    }
+}
+
 export const getPolicy = async (id) => {
     try {
         const { data } = await axios.get(`${apiUrl}/Policy/${id}`);
@@ -35,7 +44,7 @@ export const getPolicies = async () => {
 
 export const updatePolicy = async (id, policy) => {
     try {
-        const {data} = await axios.put(`${apiUrl}/Policy/${id}`, policy)
+        const { data } = await axios.put(`${apiUrl}/Policy/${id}`, policy)
         return data;
     } catch (error) {
         return Promise.reject(error.message)

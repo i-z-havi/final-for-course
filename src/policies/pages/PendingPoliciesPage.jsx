@@ -3,11 +3,16 @@ import React, { useEffect, useState } from "react";
 import usePolicy from "../hooks/usePolicy";
 import LoadSpinner from "../../components/LoadSpinner";
 import { DataGrid } from "@mui/x-data-grid";
+import { useLocalStorageUser } from "../../users/providers/UserProvider";
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../../routes/routesModel";
 
 export default function PendingPoliciesPage() {
   const { isLoading, handleGetPendingPolicies, handleAllowPolicy } = usePolicy();
+  const {user}= useLocalStorageUser();
   const [selectedRows, setSelectedRows] = useState([]);
   const [rows, setRows] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getData() {
@@ -19,7 +24,7 @@ export default function PendingPoliciesPage() {
     getData();
   }, [handleGetPendingPolicies]);
 
-  const deleteUsers = async () => {
+  const allowPolicies = async () => {
     for (const element of selectedRows) {
       await handleAllowPolicy(element);
     }
@@ -35,6 +40,8 @@ export default function PendingPoliciesPage() {
     { field: "details", headerName: "Details", width: 100 },
     { field: "signatures", headerName: "Signatures", width: 100 },
   ];
+
+  if (!user || user.isAdmin === false) return navigate(ROUTES.ROOT);
 
   return (
     <div>
@@ -75,7 +82,7 @@ export default function PendingPoliciesPage() {
                 variant="contained"
                 sx={{ margin: 1 }}
                 disabled={selectedRows.length === 0}
-                onClick={() => deleteUsers(selectedRows)}
+                onClick={() => allowPolicies(selectedRows)}
               >
                 Allow
               </Button>
