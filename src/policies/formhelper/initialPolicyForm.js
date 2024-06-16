@@ -2,7 +2,10 @@ const initialPolicyForm={
     id:"",
     title:"",
     subtitle:"",
-    description:""
+    description:"",
+    details:{
+
+    }
 }
 
 export default initialPolicyForm;
