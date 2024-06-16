@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Avatar, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
+import { Avatar, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
 import useUserHook from '../hooks/useUserHook'
@@ -51,6 +51,7 @@ export default function EditUserPage() {
 
     return (
         <>
+        <Typography variant='h1'>Edit User</Typography>
             {!loading ?
                 <>
                     <FormTemplate handleSubmit={handleSubmit(onSubmit)} handleReset={onReset} title='Edit User'>

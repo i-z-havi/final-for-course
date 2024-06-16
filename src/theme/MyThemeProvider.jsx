@@ -8,7 +8,7 @@ const getDesignTokens = (mode) => ({
     ...(mode === "light"
       ? {
           primary: {
-            main: "#964B00",
+            main: "#e5a96e",
           },
           secondary: {
             main: "#7f7fe7",

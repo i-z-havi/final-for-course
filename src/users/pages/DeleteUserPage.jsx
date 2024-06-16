@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import useUserHook from "../hooks/useUserHook";
 import LoadSpinner from "../../components/LoadSpinner";
-import { Button, Grid } from "@mui/material";
+import { Button, Divider, Grid, Typography } from "@mui/material";
 import { useLocalStorageUser } from "../providers/UserProvider";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
@@ -56,6 +56,8 @@ export default function DeleteUserPage() {
 
   return (
     <>
+      <Typography variant="h1" textAlign='center'>Delete Users</Typography>
+      <Divider />
       {!loading ? (
         <>
           <Grid

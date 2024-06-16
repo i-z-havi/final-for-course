@@ -46,7 +46,7 @@ export default function PendingPoliciesPage() {
   return (
     <div>
       <Typography variant="h1" align="center">
-        Petitions
+        Pending Petitions
       </Typography>
       <Divider />
       <>
