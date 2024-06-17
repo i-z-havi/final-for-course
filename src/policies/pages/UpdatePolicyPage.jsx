@@ -35,13 +35,12 @@ export default function UpdatePolicyPage() {
     let details = [];
     for (const [key, value] of Object.entries(updatedPolicy.Details)) {
       if (value) {
-        details.push(key)
+        details.push(key);
       }
     }
     updatedPolicy.Details = details;
     handleUpdatePolicy(data.id, updatedPolicy);
-    console.log(updatedPolicy);
-    // navigate(ROUTES.ROOT);
+    navigate(ROUTES.ROOT);
   };
 
   if (!user) return <Navigate replace to={ROUTES.ROOT} />;

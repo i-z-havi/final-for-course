@@ -19,6 +19,7 @@ export default function PendingPoliciesPage() {
       const data = await handleGetPendingPolicies();
       if (data != null) {
         setRows(data);
+        console.log(data);
       }
     }
     getData();

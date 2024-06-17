@@ -71,7 +71,7 @@ export default function usePolicy() {
     const handleCreatePolicy = useCallback(async (policy) => {
         try {
             await createPolicy(policy)
-            snack('success', 'Petition created successfully!')
+            snack('success', 'Petition created successfully! Please wait for Admin approval.')
             navigate(ROUTES.ROOT)
         }
         catch (error) {
@@ -84,7 +84,7 @@ export default function usePolicy() {
             try {
                 await updatePolicy(id, updatedPolicy);
                 setIsLoading(false);
-                snack("success", "Policy has been successfully updated!")
+                snack("success", "Policy has been successfully updated! Please wait for Admin approval.")
             } catch (error) {
                 snack("error", error);
             }

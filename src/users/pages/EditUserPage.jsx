@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Avatar, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material'
+import { Avatar, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
 import useUserHook from '../hooks/useUserHook'
@@ -13,18 +13,23 @@ export default function EditUserPage() {
 
     const { loading, handleUpdateUser, handleGetUser } = useUserHook();
     const { user } = useLocalStorageUser();
+    const [redirect, setRedirect]=useState(false)
     const [pfp, setPfp] = useState('');
+    let data=null;
     const form = useForm({
         defaultValues: async () => {
-            const data = await handleGetUser(user.id)
-            setPfp(data.profile)
-            console.log(data);
-            return {
-                FirstName: data.firstName,
-                LastName: data.lastName,
-                Email: data.email,
-                Password: ""
+            data = await handleGetUser(user.id)
+            if (data) {               
+                setPfp(data.profile)
+                console.log(data);
+                return {
+                    FirstName: data.firstName,
+                    LastName: data.lastName,
+                    Email: data.email,
+                    Password: ""
+                }
             }
+            setRedirect(true)
         }
     })
     const { register, handleSubmit, reset, formState, control } = form
@@ -48,10 +53,10 @@ export default function EditUserPage() {
     }
 
     if (!user) return <Navigate replace to={ROUTES.ROOT} />
+    if (redirect) return <Navigate replace to={ROUTES.ROOT} />
 
     return (
         <>
-        <Typography variant='h1'>Edit User</Typography>
             {!loading ?
                 <>
                     <FormTemplate handleSubmit={handleSubmit(onSubmit)} handleReset={onReset} title='Edit User'>

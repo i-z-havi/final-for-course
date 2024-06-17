@@ -1,11 +1,7 @@
 import React from "react";
 import FormTemplate from "../../forms/FormTemplate";
 import initialPolicyForm from "../formhelper/initialPolicyForm";
-import {
-  FormControlLabel,
-  TextField,
-  Checkbox,
-} from "@mui/material";
+import { FormControlLabel, TextField, Checkbox } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import usePolicy from "../hooks/usePolicy";
@@ -30,12 +26,11 @@ export default function CreatePolicyForm() {
     let details = [];
     for (const [key, value] of Object.entries(data.details)) {
       if (value) {
-        details.push(key)
+        details.push(key);
       }
     }
     data.details = details;
-    console.log(data);
-    // handleCreatePolicy(data);
+    handleCreatePolicy(data);
   };
 
   if (!user) return <Navigate replace to={ROUTES.ROOT} />;

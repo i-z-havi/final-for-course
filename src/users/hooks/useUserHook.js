@@ -80,6 +80,7 @@ export default function useUserHook() {
       snack("success", "User retrieved successfully!");
       return user;
     } catch (error) {
+      setLoading(false)
       snack("error", error);
     }
 
