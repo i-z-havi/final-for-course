@@ -1,3 +1,26 @@
+#Getting started with the project
+This project is made to read, write, and sign petitions.
+
+##Required Steps
+The server API is linked here:
+https://github.com/i-z-havi/final-project-server
+
+In addition, a script file labelled "PolicyDbScript.sql" is located within the project. It is meant to create the database within SSMS. You will need to run it in order to set the database up.
+
+##How to use website
+
+First off, you need to update connection strings in the server (in appsettings.json) and the website (the API_URL located in userUserAPI and usePolicyAPI)
+
+In the website, you will first need to make a user. Do this by going to the "Create User" button. Users can run all CRUD operations on their own petitions, however, they will need to wait for admins to permit their petitions for all users to see them in the "petitions" section.
+Admins can only be made via database commands by design, since admins should have direct access to the databse (or access to someone who can access the database). A workaround for this would be to make a specific email value be created as an admin in the server.
+
+After you sign in, you can log out or edit your information via the menu in the top right. The rest of the website can be navigated via the footer. 
+While looking at policies, you can filter out by two means:
+1: You can search for their title.
+2: You can filter via their political leanings.
+
+Admins have the abliity to manage users and petitions, and can also delete petitions and users at will.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
