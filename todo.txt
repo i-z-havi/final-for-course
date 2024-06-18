@@ -6,5 +6,5 @@
 
 -Finish allowing petitions // done!
 
--FINISH UPDATE PETITIONS U DIDNT PROGRAM IT
--think of how to do this! authorize in back end with http context, and front end redirection too?
+-TODO
+-make the filter via policy type happen in policy presenter for DRY code

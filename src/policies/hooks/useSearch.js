@@ -5,6 +5,8 @@ export default function useSearch() {
   const search = searchParams.get("petitionsearch");
 
   const detailOverlap = (policyDetails, searchDetails) => {
+    console.log(policyDetails);
+    console.log(searchDetails);
     if (policyDetails.length === 0 && searchDetails.length !== 0) return false;
     let check=true
     searchDetails.forEach((element) => {
@@ -19,9 +21,12 @@ export default function useSearch() {
     if (policies === null || (search === null && details.length === 0)) {
       return policies;
     }
-    policies = policies.filter((policy) => policy.title.includes(search));
+    if (search) {
+      policies = policies.filter((policy) => policy.title.includes(search));
+    }
     policies = policies.filter((policy) =>
       detailOverlap(policy.details, details)
+      
     );
     return policies;
   };
