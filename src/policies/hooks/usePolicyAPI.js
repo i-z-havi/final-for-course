@@ -1,4 +1,5 @@
 import axios from "axios";
+import { checkError } from "../../helpers/checkError";
 const apiUrl = "https://localhost:7192/api";
 
 export const createPolicy = async (policy) => {
@@ -6,7 +7,11 @@ export const createPolicy = async (policy) => {
     const { data } = await axios.post(`${apiUrl}/Policy`, policy);
     return data;
   } catch (error) {
-    return Promise.reject(error.message);
+    console.log(error);
+    if (error.response) {
+      return Promise.reject(error.response.data);
+    }
+    return checkError(error)
   }
 };
 
@@ -15,7 +20,7 @@ export const deletePolicy = async (id) => {
     const { data } = await axios.delete(`${apiUrl}/Policy/${id}`);
     return data;
   } catch (error) {
-    return Promise.reject(error.message);
+    return checkError(error)
   }
 };
 
@@ -24,7 +29,7 @@ export const getPolicy = async (id) => {
     const { data } = await axios.get(`${apiUrl}/Policy/${id}`);
     return data;
   } catch (error) {
-    return Promise.reject(error.message);
+    return checkError(error)
   }
 };
 
@@ -34,7 +39,7 @@ export const getPolicies = async () => {
     const data = response.data;
     return data;
   } catch (error) {
-    return Promise.reject(error.message);
+    return checkError(error)
   }
 };
 
@@ -43,7 +48,7 @@ export const updatePolicy = async (id, policy) => {
     const { data } = await axios.put(`${apiUrl}/Policy/${id}`, policy);
     return data;
   } catch (error) {
-    return Promise.reject(error.message);
+    return checkError(error)
   }
 };
 
@@ -52,7 +57,7 @@ export const signPolicy = async (id) => {
     const { data } = axios.patch(`${apiUrl}/Policy/${id}`);
     return data;
   } catch (error) {
-    return Promise.reject(error.message);
+    return checkError(error)
   }
 };
 
@@ -62,7 +67,7 @@ export const getMyPolicies = async () => {
     const data = response.data;
     return data;
   } catch (error) {
-    return Promise.reject(error.message);
+    return checkError(error)
   }
 };
 
@@ -72,7 +77,7 @@ export const getPendingPolicies = async () => {
     const data = response.data;
     return data;
   } catch (error) {
-    return Promise.reject(error.message);
+    return checkError(error)
   }
 };
 
@@ -82,6 +87,6 @@ export const allowPolicy = async (id) => {
     const data = response.data;
     return data;
   } catch (error) {
-    return Promise.reject(error.message);
+    return checkError(error)
   }
 };

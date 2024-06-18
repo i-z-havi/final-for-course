@@ -1,4 +1,5 @@
 import axios from "axios";
+import { checkError } from "../../helpers/checkError";
 const API_URL = "https://localhost:7192/api";
 
 export const getUser = async (id) => {
@@ -6,7 +7,7 @@ export const getUser = async (id) => {
     const { data } = await axios.get(`${API_URL}/Users/${id}`);
     return data;
   } catch (error) {
-    return Promise.reject(error.message);
+    return checkError(error)
   }
 };
 
@@ -15,7 +16,7 @@ export const getUsers = async () => {
     const { data } = await axios.get(`${API_URL}/Users`);
     return data;
   } catch (error) {
-    return Promise.reject(error.message);
+    return checkError(error)
   }
 };
 
@@ -24,7 +25,7 @@ export const createUser = async (user) => {
     const { data } = await axios.post(`${API_URL}/Users`, user);
     return data;
   } catch (error) {
-    return Promise.reject(error.message);
+    return checkError(error)
   }
 };
 
@@ -33,7 +34,7 @@ export const updateUser = async (updatedUser, id) => {
     const { data } = await axios.put(`${API_URL}/Users/${id}`, updatedUser);
     return data;
   } catch (error) {
-    return Promise.reject(error.message);
+    return checkError(error)
   }
 };
 
@@ -45,7 +46,7 @@ export const loginUser = async (loginInfo) => {
     if (error.response) {
       return Promise.reject(error.response.data);
     }
-    return Promise.reject(error.message);
+    return checkError(error)
   }
 };
 
@@ -54,6 +55,6 @@ export const deleteUser = async (id) => {
     const { data } = await axios.delete(`${API_URL}/Users/${id}`);
     return data;
   } catch (error) {
-    return Promise.reject(error.message);
+    return checkError(error)
   }
 };

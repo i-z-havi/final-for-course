@@ -34,6 +34,7 @@ export default function PolicyPresenter({ policies }) {
     if (window.confirm("Are you sure you want to delete this petition?")) {
       handleDeletePolicy(id);
     }
+    window.location.reload();
   };
 
   const handleDetailsChange = (detail, e) => {

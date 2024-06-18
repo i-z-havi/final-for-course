@@ -17,9 +17,14 @@ export default function UpdatePolicyPage() {
   const snack = useSnack();
 
   useEffect(() => {
-    snack("error", "You do not have permission to update this petition!");
-    if (!user) navigate(ROUTES.ROOT);
-    if (!isLoading && user.id !== data.creatorId) navigate(ROUTES.ROOT);
+    if (!user) {
+      snack("error", "You do not have permission to update this petition!");
+      navigate(ROUTES.ROOT);
+    }
+    if (!isLoading && user.id !== data.creatorId) {
+      snack("error", "You do not have permission to update this petition!");
+      navigate(ROUTES.ROOT);
+    }
   });
 
   const form = useForm({
