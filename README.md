@@ -5,7 +5,7 @@ This project is made to read, write, and sign petitions.
 The server API is linked here:
 https://github.com/i-z-havi/final-project-server
 
-In addition, a script file labelled "PolicyDbScript.sql" is located within the project. It is meant to create the database within SSMS. You will need to run it in order to set the database up.
+In addition, a script file labelled "PolicyDbScript.sql" is located within the project. It is meant to create the database within SSMS. You will need to run it in order to set the database up and mark users as admins.
 
 ## How to use website
 
