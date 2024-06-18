@@ -1,6 +1,5 @@
 const ROUTES = {
     ROOT: "/",
-    SANDBOX: "/sandbox",
     CREATE_POLICY:"/new_policy",
     CREATE_USER:"/new_user",
     EDIT_USER: "/edit_user/",

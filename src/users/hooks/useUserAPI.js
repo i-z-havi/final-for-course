@@ -8,7 +8,7 @@ export const getUser = async (id) => {
   } catch (error) {
     return Promise.reject(error.message);
   }
-}
+};
 
 export const getUsers = async () => {
   try {
@@ -31,28 +31,29 @@ export const createUser = async (user) => {
 export const updateUser = async (updatedUser, id) => {
   try {
     const { data } = await axios.put(`${API_URL}/Users/${id}`, updatedUser);
-    return data
+    return data;
   } catch (error) {
     return Promise.reject(error.message);
   }
-}
+};
 
 export const loginUser = async (loginInfo) => {
   try {
     const { data } = await axios.post(`${API_URL}/Users/login`, loginInfo);
     return data;
   } catch (error) {
-    console.log(error);
+    if (error.response) {
+      return Promise.reject(error.response.data);
+    }
     return Promise.reject(error.message);
   }
 };
 
 export const deleteUser = async (id) => {
-  console.log(id);
   try {
     const { data } = await axios.delete(`${API_URL}/Users/${id}`);
     return data;
   } catch (error) {
     return Promise.reject(error.message);
   }
-}
+};

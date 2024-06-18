@@ -1,7 +1,10 @@
-import { Container, Divider, Stack, Typography } from '@mui/material'
+import { Button, Container, Divider, Stack, Typography } from '@mui/material'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import ROUTES from '../routes/routesModel'
 
 export default function LandingPage() {
+  const nav=useNavigate()
   return (
     <Container>
       <Typography variant='h1' align='center' sx={{ pt: 3 }}>
@@ -24,6 +27,9 @@ export default function LandingPage() {
         <Typography fontStyle='italic' fontWeight='bold'>
           Make Your Voice Heard!
         </Typography>
+        <Button variant="contained" onClick={()=>nav(ROUTES.POLICY_PAGE)}>
+          To Petitions...
+        </Button>
         <br/>
         <img src='../assets/images/1024px-Knesset_Israeli_Parliament_Building_(41404895850).jpg' alt='Knesset'/>
       </Stack>

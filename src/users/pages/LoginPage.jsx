@@ -4,11 +4,10 @@ import initialLoginForm from "../formhelper/initialLoginForm";
 import { useForm } from "react-hook-form";
 import useUserHook from "../hooks/useUserHook";
 import { TextField } from "@mui/material";
-import { DevTool } from "@hookform/devtools";
 
 export default function LoginPage() {
   const form = useForm({ initialLoginForm });
-  const { register, handleSubmit, reset, formState, control } = form;
+  const { register, handleSubmit, reset, formState } = form;
   const { handleLoginUser } = useUserHook();
   const { errors } = formState;
 
@@ -30,7 +29,7 @@ export default function LoginPage() {
         <TextField
           label="Email"
           name="UserName"
-          {...register("UserName", { //This has to match the model name in the back end!
+          {...register("UserName", {
             required: "Email is required.",
             pattern: { value: /^\S+@\S+$/i, message: "Email must be valid." },
           })}
@@ -48,7 +47,6 @@ export default function LoginPage() {
           sx={{ m: 2 }}
         />
       </FormTemplate>
-      <DevTool control={control} />
     </>
   );
 }

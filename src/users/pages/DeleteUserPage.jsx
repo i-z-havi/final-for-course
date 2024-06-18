@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { DataGrid } from "@mui/x-data-grid";
-import useUserHook from "../hooks/useUserHook";
-import LoadSpinner from "../../components/LoadSpinner";
 import { Button, Divider, Grid, Typography } from "@mui/material";
-import { useLocalStorageUser } from "../providers/UserProvider";
+import { DataGrid } from "@mui/x-data-grid";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import LoadSpinner from "../../components/LoadSpinner";
 import ROUTES from "../../routes/routesModel";
+import useUserHook from "../hooks/useUserHook";
+import { useLocalStorageUser } from "../providers/UserProvider";
 
 export default function DeleteUserPage() {
   const { loading, handleGetUsers, handleDeleteUser, handleLogout } =

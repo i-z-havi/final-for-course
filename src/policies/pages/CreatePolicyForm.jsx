@@ -1,25 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FormTemplate from "../../forms/FormTemplate";
 import initialPolicyForm from "../formhelper/initialPolicyForm";
 import { FormControlLabel, TextField, Checkbox } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
 import usePolicy from "../hooks/usePolicy";
 import { useLocalStorageUser } from "../../users/providers/UserProvider";
 import ROUTES from "../../routes/routesModel";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useSnack } from "../../theme/Snackbar/SnackBarProvider";
 
 export default function CreatePolicyForm() {
   const form = useForm({ initialPolicyForm });
 
-  const { register, handleSubmit, reset, formState, control } = form;
+  const { register, handleSubmit, reset, formState } = form;
   const { handleCreatePolicy } = usePolicy();
   const { errors } = formState;
   const { user } = useLocalStorageUser();
+  const navigate = useNavigate();
+  const snack = useSnack();
 
   const onReset = () => {
     reset();
   };
+
+  useEffect(() => {
+    if (!user) {
+      snack("error", "Must be logged in to create petition!");
+      navigate(ROUTES.ROOT);
+    }
+  });
 
   const onSubmit = (data) => {
     data = { ...data, CreatorId: user.id };
@@ -32,8 +41,6 @@ export default function CreatePolicyForm() {
     data.details = details;
     handleCreatePolicy(data);
   };
-
-  if (!user) return <Navigate replace to={ROUTES.ROOT} />;
 
   return (
     <>
@@ -105,7 +112,6 @@ export default function CreatePolicyForm() {
           {...register("details.Economic")}
         />
       </FormTemplate>
-      <DevTool control={control} />
     </>
   );
 }

@@ -8,16 +8,19 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import { useLocalStorageUser } from "../../users/providers/UserProvider";
 import usePolicy from "../hooks/usePolicy";
+import useSearch from "../hooks/useSearch";
 
-export default function PolicyPresenter(policies) {
+export default function PolicyPresenter({ policies }) {
   const navigate = useNavigate();
   const { handleDeletePolicy } = usePolicy();
   const { user } = useLocalStorageUser();
+  const { search, filterPolicies } = useSearch();
+  const [details, setDetails] = useState([]);
 
   const handlePolicyClick = (id) => {
     navigate(ROUTES.SPECIFIC_POLICY + "/" + id);
@@ -33,10 +36,52 @@ export default function PolicyPresenter(policies) {
     }
   };
 
+  const handleDetailsChange = (detail, e) => {
+    if (!details.includes(detail)) {
+      setDetails([...details, detail]);
+    } else {
+      setDetails(details.filter((arrDetails) => arrDetails !== detail));
+    }
+  };
+
   return (
     <>
-      {policies.policies.length !== 0 ? (
+      {policies ? (
         <>
+          <Box justifyContent="center" display="flex">
+            <Grid
+              container
+              direction="row"
+              justifyContent="center"
+              spacing={0}
+              sx={{ p: 3, maxWidth: "560px" }}
+            >
+              <FormControlLabel
+                control={<Checkbox />}
+                label="Left"
+                name="Left"
+                onChange={(e) => handleDetailsChange("Left", e)}
+              />
+              <FormControlLabel
+                control={<Checkbox />}
+                label="Right"
+                name="Right"
+                onChange={(e) => handleDetailsChange("Right", e)}
+              />
+              <FormControlLabel
+                control={<Checkbox />}
+                label="Social"
+                name="Social"
+                onChange={(e) => handleDetailsChange("Social", e)}
+              />
+              <FormControlLabel
+                control={<Checkbox />}
+                label="Economic"
+                name="Economic"
+                onChange={(e) => handleDetailsChange("Economic", e)}
+              />
+            </Grid>
+          </Box>
           <Grid
             container
             spacing={0}
@@ -46,7 +91,12 @@ export default function PolicyPresenter(policies) {
           >
             <Grid item xs={3}>
               <Stack>
-                {policies.policies.map((policy) => (
+                <Typography textAlign="center" fontStyle="italic">
+                  Active policies are{" "}
+                  <span style={{ color: "green" }}>green</span>, inactive are{" "}
+                  <span style={{ color: "red" }}>red</span>.
+                </Typography>
+                {filterPolicies(policies, search, details).map((policy) => (
                   <Stack
                     key={policy.id}
                     sx={{

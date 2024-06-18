@@ -1,15 +1,22 @@
 import { useCallback, useState } from "react";
-import { useSnack } from "../../theme/Snackbar/SnackBarProvider";
-import { createUser, deleteUser, getUser, getUsers, loginUser, updateUser } from "./useUserAPI";
 import { useNavigate } from "react-router-dom";
-import ROUTES from "../../routes/routesModel";
 import useAxios from "../../hooks/useAxios";
+import ROUTES from "../../routes/routesModel";
+import { useSnack } from "../../theme/Snackbar/SnackBarProvider";
 import {
   getUserFromToken,
   removeToken,
   setTokenToLocalStorage,
 } from "../../users/services/tokenService";
 import { useLocalStorageUser } from "../providers/UserProvider";
+import {
+  createUser,
+  deleteUser,
+  getUser,
+  getUsers,
+  loginUser,
+  updateUser,
+} from "./useUserAPI";
 
 export default function useUserHook() {
   const snack = useSnack();
@@ -44,14 +51,18 @@ export default function useUserHook() {
       } catch (error) {
         snack("error", error);
       }
-    }, [snack]
+    },
+    [snack]
   );
 
   const handleCreateUser = useCallback(
     async (user) => {
       try {
         await createUser(user);
-        await handleLoginUser({ UserName: user.Email, Password: user.Password });
+        await handleLoginUser({
+          UserName: user.Email,
+          Password: user.Password,
+        });
         navigate(ROUTES.ROOT);
       } catch (error) {
         snack("error", error);
@@ -66,36 +77,39 @@ export default function useUserHook() {
         const user = await updateUser(id, updatedUser);
         setUser(user);
         setLoading(false);
-        snack("success", "User has been successfully updated!")
+        snack("success", "User has been successfully updated!");
       } catch (error) {
         snack("error", error);
       }
-    }, [setUser, snack]
+    },
+    [setUser, snack]
   );
 
-  const handleGetUser = useCallback(async (id) => {
-    try {
-      const user = await getUser(id);
-      setLoading(false);
-      snack("success", "User retrieved successfully!");
-      return user;
-    } catch (error) {
-      setLoading(false)
-      snack("error", error);
-    }
-
-  }, [snack]);
+  const handleGetUser = useCallback(
+    async (id) => {
+      try {
+        const user = await getUser(id);
+        setLoading(false);
+        snack("success", "User retrieved successfully!");
+        return user;
+      } catch (error) {
+        setLoading(false);
+        snack("error", error);
+      }
+    },
+    [snack]
+  );
 
   const handleGetUsers = useCallback(async () => {
     try {
       const users = await getUsers();
       setData(users);
-      setLoading(false)
+      setLoading(false);
       snack("success", "Users successfully retrieved!");
       setLoading(false);
       return users;
     } catch (error) {
-      setLoading(false)
+      setLoading(false);
       snack("error", error);
     }
   }, [snack]);
@@ -103,7 +117,7 @@ export default function useUserHook() {
   const handleLogout = useCallback(() => {
     setUser(null);
     removeToken();
-    navigate(ROUTES.ROOT)
+    navigate(ROUTES.ROOT);
   }, [setUser, navigate]);
 
   return {
@@ -115,6 +129,6 @@ export default function useUserHook() {
     handleUpdateUser,
     handleGetUsers,
     handleLogout,
-    handleDeleteUser
+    handleDeleteUser,
   };
 }

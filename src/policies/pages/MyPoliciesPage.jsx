@@ -3,15 +3,25 @@ import React, { useEffect } from "react";
 import usePolicy from "../hooks/usePolicy";
 import LoadSpinner from "../../components/LoadSpinner";
 import PolicyPresenter from "../components/PolicyPresenter";
-import useSearch from "../hooks/useSearch";
+import { useSnack } from "../../theme/Snackbar/SnackBarProvider";
+import { useNavigate } from "react-router-dom";
+import { useLocalStorageUser } from "../../users/providers/UserProvider";
+import ROUTES from "../../routes/routesModel";
 
 export default function PoliciesPage() {
   const { data, isLoading, handleGetMyPolicies } = usePolicy();
-  const { search, filterPolicies } = useSearch();
+  const { user } = useLocalStorageUser();
+  const snack = useSnack();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    handleGetMyPolicies();
-  }, [handleGetMyPolicies]);
+    if (user) {
+      handleGetMyPolicies();
+    } else {
+      snack("error", "Only users can see their own policies!");
+      navigate(ROUTES.ROOT);
+    }
+  }, [handleGetMyPolicies, navigate, snack, user]);
 
   return (
     <div>
@@ -19,11 +29,7 @@ export default function PoliciesPage() {
         My Petitions
       </Typography>
       <Divider />
-      {isLoading ? (
-        <LoadSpinner />
-      ) : (
-        <PolicyPresenter policies={filterPolicies(data, search)} />
-      )}
+      {isLoading ? <LoadSpinner /> : <PolicyPresenter policies={data} />}
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import { createContext, useMemo, useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-//themes
 const getDesignTokens = (mode) => ({
   palette: {
     mode,

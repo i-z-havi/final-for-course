@@ -32,7 +32,6 @@ export default function Header() {
   return (
     <AppBar sx={{ position: "sticky" }}>
       <Toolbar sx={{ justifyContent: "space-between" }}>
-        {/* left navbar */}
         <Box
           sx={{
             display: "flex",

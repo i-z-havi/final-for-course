@@ -1,31 +1,46 @@
 import { useLocalStorageUser } from "../../users/providers/UserProvider";
 import { useForm } from "react-hook-form";
 import usePolicy from "../hooks/usePolicy";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import FormTemplate from "../../forms/FormTemplate";
 import { Checkbox, FormControlLabel, TextField } from "@mui/material";
-import { DevTool } from "@hookform/devtools";
 import LoadSpinner from "../../components/LoadSpinner";
+import { useEffect } from "react";
+import { useSnack } from "../../theme/Snackbar/SnackBarProvider";
 
 export default function UpdatePolicyPage() {
   const { id } = useParams();
   const { isLoading, data, handleGetPolicy, handleUpdatePolicy } = usePolicy();
   const { user } = useLocalStorageUser();
   const navigate = useNavigate();
+  const snack = useSnack();
+
+  useEffect(() => {
+    snack("error", "You do not have permission to update this petition!");
+    if (!user) navigate(ROUTES.ROOT);
+    if (!isLoading && user.id !== data.creatorId) navigate(ROUTES.ROOT);
+  });
+
   const form = useForm({
     defaultValues: async () => {
-      const data = await handleGetPolicy(id);
-      if (data) {
+      if (!user) {
+        return null;
+      }
+      if (!isLoading && user.id !== data.creatorId) {
+        return null;
+      }
+      const policyData = await handleGetPolicy(id);
+      if (policyData) {
         return {
-          Title: data.title,
-          Subtitle: data.subtitle,
-          Description: data.description,
+          Title: policyData.title,
+          Subtitle: policyData.subtitle,
+          Description: policyData.description,
         };
       }
     },
   });
-  const { register, handleSubmit, reset, formState, control } = form;
+  const { register, handleSubmit, reset, formState } = form;
   const { errors } = formState;
   const onReset = () => {
     reset();
@@ -42,10 +57,6 @@ export default function UpdatePolicyPage() {
     handleUpdatePolicy(data.id, updatedPolicy);
     navigate(ROUTES.ROOT);
   };
-
-  if (!user) return <Navigate replace to={ROUTES.ROOT} />;
-  if (!isLoading && user.id !== data.creatorId)
-    return <Navigate replace to={ROUTES.ROOT} />;
 
   return (
     <>
@@ -125,7 +136,6 @@ export default function UpdatePolicyPage() {
               {...register("Details.Economic")}
             />
           </FormTemplate>
-          <DevTool control={control} />
         </>
       ) : (
         <LoadSpinner />

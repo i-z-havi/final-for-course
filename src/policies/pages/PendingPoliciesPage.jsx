@@ -6,24 +6,30 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useLocalStorageUser } from "../../users/providers/UserProvider";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
+import { useSnack } from "../../theme/Snackbar/SnackBarProvider";
 
 export default function PendingPoliciesPage() {
-  const { isLoading, handleGetPendingPolicies, handleAllowPolicy } = usePolicy();
-  const {user}= useLocalStorageUser();
+  const { isLoading, handleGetPendingPolicies, handleAllowPolicy } =
+    usePolicy();
+  const { user } = useLocalStorageUser();
   const [selectedRows, setSelectedRows] = useState([]);
   const [rows, setRows] = useState([]);
   const navigate = useNavigate();
+  const snack = useSnack();
 
   useEffect(() => {
+    if (!user || user.isAdmin === false) {
+      snack("error", "You do not have permission to view this page!");
+      return navigate(ROUTES.ROOT);
+    }
     async function getData() {
       const data = await handleGetPendingPolicies();
       if (data != null) {
         setRows(data);
-        console.log(data);
       }
     }
     getData();
-  }, [handleGetPendingPolicies]);
+  }, [handleGetPendingPolicies, navigate, snack, user]);
 
   const allowPolicies = async () => {
     for (const element of selectedRows) {
@@ -41,8 +47,6 @@ export default function PendingPoliciesPage() {
     { field: "details", headerName: "Details", width: 100 },
     { field: "signatures", headerName: "Signatures", width: 100 },
   ];
-
-  if (!user || user.isAdmin === false) return navigate(ROUTES.ROOT);
 
   return (
     <div>
