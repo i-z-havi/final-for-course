@@ -1,13 +1,13 @@
-#Getting started with the project
+# Getting started with the project
 This project is made to read, write, and sign petitions.
 
-##Required Steps
+## Required Steps
 The server API is linked here:
 https://github.com/i-z-havi/final-project-server
 
 In addition, a script file labelled "PolicyDbScript.sql" is located within the project. It is meant to create the database within SSMS. You will need to run it in order to set the database up.
 
-##How to use website
+## How to use website
 
 First off, you need to update connection strings in the server (in appsettings.json) and the website (the API_URL located in userUserAPI and usePolicyAPI)
 
