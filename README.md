@@ -9,7 +9,8 @@ In addition, a script file labelled "PolicyDbScript.sql" is located within the p
 
 ## How to use website
 
-First off, you need to update connection strings in the server (in appsettings.json) and the website (the API_URL located in userUserAPI and usePolicyAPI)
+First off, you need to update connection strings in the server (in appsettings.json) and the website (the API_URL located in userUserAPI and usePolicyAPI).
+In addition, you need to declare an environment variable (I recommend doing this through system properties on Windows) labelled JwtForProject and give it a value.
 
 In the website, you will first need to make a user. Do this by going to the "Create User" button. Users can run all CRUD operations on their own petitions, however, they will need to wait for admins to permit their petitions for all users to see them in the "petitions" section.
 Admins can only be made via database commands by design, since admins should have direct access to the databse (or access to someone who can access the database). A workaround for this would be to make a specific email value be created as an admin in the server.
