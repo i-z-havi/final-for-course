@@ -11,11 +11,11 @@ In addition, a script file labelled "PolicyDbScript.sql" is located within the p
 
 ### Server Set Up
 First off, you need to update connection strings in the server (in appsettings.json) and the website (the API_URL located in userUserAPI and usePolicyAPI).
-After that, you need to set up a value for the Jwt key in the server. This can be done by:
-1- Opening the server API in Visual Studio
-2- Right clicking on it in the Solution Explorer
-3- Navigating to Manage User Secrets
-4- Add the following code (Make sure the key is at least 16 characters!):
+After that, you need to set up a value for the Jwt key in the server. This can be done by:\
+1- Opening the server API in Visual Studio\
+2- Right clicking on it in the Solution Explorer\
+3- Navigating to Manage User Secrets\
+4- Add the following code (Make sure the key is at least 16 characters!):\
 ``
 {
   "Jwt": {
