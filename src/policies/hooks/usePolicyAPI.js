@@ -1,6 +1,6 @@
 import axios from "axios";
 import { checkError } from "../../helpers/checkError";
-const apiUrl = "https://localhost:7192/api";
+const apiUrl = process.env.REACT_APP_API_URL||"https://localhost:7192/api";
 
 export const createPolicy = async (policy) => {
   try {

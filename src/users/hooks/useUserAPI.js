@@ -1,6 +1,6 @@
 import axios from "axios";
 import { checkError } from "../../helpers/checkError";
-const API_URL = "https://localhost:7192/api";
+const API_URL = process.env.REACT_APP_API_URL||"https://localhost:7192/api";
 
 export const getUser = async (id) => {
   try {
