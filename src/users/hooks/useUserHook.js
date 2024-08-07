@@ -30,17 +30,14 @@ export default function useUserHook() {
     async (loginModel) => {
       try {
         const token = await loginUser(loginModel);
-        console.log("Received token:", token); // Debug log
         setTokenToLocalStorage(token);
         setToken(token);
         const user = getUserFromToken();
-        console.log("Parsed user:", user); // Debug log
         setUser(user);
         navigate(ROUTES.ROOT);
         snack("success", "Login Successful!");
       } catch (error) {
-        console.error("Login error:", error); // Debug log
-        snack("error", error.toString());
+        snack("error", error);
       }
     },
     [setToken, setUser, snack, navigate]
