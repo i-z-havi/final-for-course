@@ -47,7 +47,7 @@ export default function Footer() {
           </IconButton>
           <BottomNavigation showLabels sx={{ minWidth: "75vw" }}>
             <BottomNavigationAction
-              label="Landing Page"
+              label="Home Page"
               icon={<HouseIcon />}
               onClick={() => navigate(ROUTES.ROOT)}
             />
