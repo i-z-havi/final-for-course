@@ -95,7 +95,10 @@ export default function PolicyPresenter({ policies }) {
                 <Typography textAlign="center" fontStyle="italic">
                   Active policies are{" "}
                   <span style={{ color: "green" }}>green</span>, inactive are{" "}
-                  <span style={{ color: "red" }}>red</span>.
+                  <span style={{ color: "red" }}>red</span> and can only be seen in the "My Policies" page (if you own them, that is!). 
+                </Typography>
+                <Typography textAlign="center" fontStyle="italic">
+                  If the policy is inactive, wait for an admin to enable it!
                 </Typography>
                 {filterPolicies(policies, search, details).map((policy) => (
                   <Stack

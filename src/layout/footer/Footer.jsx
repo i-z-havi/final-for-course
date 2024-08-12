@@ -108,7 +108,7 @@ export default function Footer() {
           >
             <Stack direction="column">
               <Typography>
-                <a href="mailto:NOTAREALEMAILADDRESSTHISISJUSTTOSHOWCASEWHERETHEBUTTON*WOULD*BEIFTHISWASAREALEMAILADDRESS">Email Us!</a>
+                <a href="mailto:itay.s.zehavi@gmail.com">Email Me!</a>
               </Typography>
               <Typography
                 sx={{
