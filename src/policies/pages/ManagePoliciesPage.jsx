@@ -99,17 +99,17 @@ export default function ManagePoliciesPage() {
                 variant="contained"
                 sx={{ margin: 1 }}
                 disabled={selectedRows.length === 0}
-                onClick={() => deletePolicies(selectedRows)}
+                onClick={() => allowPolicies(selectedRows)}
               >
-                Delete
+                Allow
               </Button>
               <Button
                 variant="contained"
                 sx={{ margin: 1 }}
                 disabled={selectedRows.length === 0}
-                onClick={() => allowPolicies(selectedRows)}
+                onClick={() => deletePolicies(selectedRows)}
               >
-                Allow
+                Delete
               </Button>
             </Grid>
           </>
