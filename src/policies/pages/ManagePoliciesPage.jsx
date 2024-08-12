@@ -9,7 +9,12 @@ import ROUTES from "../../routes/routesModel";
 import { useSnack } from "../../theme/Snackbar/SnackBarProvider";
 
 export default function ManagePoliciesPage() {
-  const { isLoading, handleGetPolicies, handleAllowPolicy } = usePolicy();
+  const {
+    isLoading,
+    handleGetPolicies,
+    handleAllowPolicy,
+    handleDeletePolicy,
+  } = usePolicy();
   const { user } = useLocalStorageUser();
   const [selectedRows, setSelectedRows] = useState([]);
   const [rows, setRows] = useState([]);
@@ -32,6 +37,13 @@ export default function ManagePoliciesPage() {
   }, [handleGetPolicies, navigate, snack, user]);
 
   const deletePolicies = async () => {
+    for (const element of selectedRows) {
+      await handleDeletePolicy(element);
+    }
+    window.location.reload();
+  };
+
+  const allowPolicies = async () => {
     for (const element of selectedRows) {
       await handleAllowPolicy(element);
     }
@@ -90,6 +102,14 @@ export default function ManagePoliciesPage() {
                 onClick={() => deletePolicies(selectedRows)}
               >
                 Delete
+              </Button>
+              <Button
+                variant="contained"
+                sx={{ margin: 1 }}
+                disabled={selectedRows.length === 0}
+                onClick={() => allowPolicies(selectedRows)}
+              >
+                Allow
               </Button>
             </Grid>
           </>

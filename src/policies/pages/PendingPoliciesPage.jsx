@@ -9,8 +9,12 @@ import ROUTES from "../../routes/routesModel";
 import { useSnack } from "../../theme/Snackbar/SnackBarProvider";
 
 export default function PendingPoliciesPage() {
-  const { isLoading, handleGetPendingPolicies, handleAllowPolicy } =
-    usePolicy();
+  const {
+    isLoading,
+    handleGetPendingPolicies,
+    handleAllowPolicy,
+    handleDeletePolicy,
+  } = usePolicy();
   const { user } = useLocalStorageUser();
   const [selectedRows, setSelectedRows] = useState([]);
   const [rows, setRows] = useState([]);
@@ -34,6 +38,13 @@ export default function PendingPoliciesPage() {
   const allowPolicies = async () => {
     for (const element of selectedRows) {
       await handleAllowPolicy(element);
+    }
+    window.location.reload();
+  };
+
+  const deletePolicies = async () => {
+    for (const element of selectedRows) {
+      await handleDeletePolicy(element);
     }
     window.location.reload();
   };
@@ -90,6 +101,14 @@ export default function PendingPoliciesPage() {
                 onClick={() => allowPolicies(selectedRows)}
               >
                 Allow
+              </Button>
+              <Button
+                variant="contained"
+                sx={{ margin: 1 }}
+                disabled={selectedRows.length === 0}
+                onClick={() => deletePolicies(selectedRows)}
+              >
+                Delete
               </Button>
             </Grid>
           </>
