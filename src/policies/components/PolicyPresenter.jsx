@@ -95,7 +95,7 @@ export default function PolicyPresenter({ policies }) {
                 <Typography textAlign="center" fontStyle="italic">
                   Active policies are{" "}
                   <span style={{ color: "green" }}>green</span>, inactive are{" "}
-                  <span style={{ color: "red" }}>red</span> and can only be seen in the "My Policies" page (if you own them, that is!). 
+                  <span style={{ color: "red" }}>red</span> and can only be seen in the "My Petitions" page (if you own them, that is!). 
                 </Typography>
                 <Typography textAlign="center" fontStyle="italic">
                   If the policy is inactive, wait for an admin to enable it!
