@@ -98,7 +98,7 @@ export default function PolicyPresenter({ policies }) {
                   <span style={{ color: "red" }}>red</span> and can only be seen in the "My Petitions" page (if you own them, that is!). 
                 </Typography>
                 <Typography textAlign="center" fontStyle="italic">
-                  If the policy is inactive, wait for an admin to enable it!
+                  If the petition is inactive, wait for an admin to enable it!
                 </Typography>
                 {filterPolicies(policies, search, details).map((policy) => (
                   <Stack
