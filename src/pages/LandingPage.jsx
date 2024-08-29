@@ -31,7 +31,7 @@ export default function LandingPage() {
           To Petitions...
         </Button>
         <br/>
-        <img src='../assets/images/1024px-Knesset_Israeli_Parliament_Building_(41404895850).jpg' alt='Knesset'/>
+        <img src='../assets/images/1024px-Knesset_Israeli_Parliament_Building_(41404895850).jpg' alt='Knesset' style={{width:"70vw"}}/>
       </Stack>
     </Container>
   )
